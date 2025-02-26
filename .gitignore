@@ -1,13 +1,10 @@
-build
-dist / media
-node_modules
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+pnpm-debug.log*
+
+# macOS-specific files
 .DS_Store
-.env
-.next
-.vercel
-
-# Payload default media upload directory
-public/media/
-
-public/robots.txt
-public/sitemap*.xml

@@ -1,0 +1,18 @@
+packages:
+  - 'payload'
+  - 'mhr-frontend'
+
+catalogs:
+  payload:
+    "@payloadcms/db-mongodb": ^3.24.0
+    "@payloadcms/live-preview-react": ^3.24.0
+    "@payloadcms/next": ^3.24.0
+    "@payloadcms/payload-cloud": ^3.24.0
+    "@payloadcms/plugin-form-builder": ^3.24.0
+    "@payloadcms/plugin-nested-docs": ^3.24.0
+    "@payloadcms/plugin-redirects": ^3.24.0
+    "@payloadcms/plugin-search": ^3.24.0
+    "@payloadcms/plugin-seo": ^3.24.0
+    "@payloadcms/richtext-lexical": ^3.24.0
+    "@payloadcms/ui": ^3.24.0
+    payload: ^3.24.0
