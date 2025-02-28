@@ -1,5 +1,12 @@
 ---
-import './src/styles/global.css'
+import '../styles/global.css'
+import { config } from 'mhr-payload'
+import { AdminBar } from '@/components/AdminBar'
+
+// make this cleaner, more dynamic, once we have static params and slugs?
+const url = Astro.url;
+const slug = url.pathname
+//console.log(slug)
 ---
 <!doctype html>
 <html lang="en">
@@ -9,7 +16,8 @@ import './src/styles/global.css'
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<title>Astro Basics</title>
 	</head>
-	<body class="">
+	<body class="bg-stone-950">
+		<AdminBar path={slug} adminBarProps={{preview: true,}} client:only="react"/>
 		<slot />
 	</body>
 </html>

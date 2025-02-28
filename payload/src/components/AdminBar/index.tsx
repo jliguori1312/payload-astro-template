@@ -3,10 +3,10 @@
 import type { PayloadAdminBarProps, PayloadMeUser } from 'payload-admin-bar'
 
 import { cn } from '@/utilities/ui'
-import { useSelectedLayoutSegments } from 'next/navigation'
+//import { useSelectedLayoutSegments } from 'next/navigation'
 import { PayloadAdminBar } from 'payload-admin-bar'
 import React, { useState } from 'react'
-import { useRouter } from 'next/navigation'
+//import { useRouter } from 'next/navigation'
 
 import './index.scss'
 
@@ -33,14 +33,18 @@ const Title: React.FC = () => <span>Dashboard</span>
 
 export const AdminBar: React.FC<{
   adminBarProps?: PayloadAdminBarProps
+  path: string
 }> = (props) => {
-  const { adminBarProps } = props || {}
-  const segments = useSelectedLayoutSegments()
+  const { adminBarProps, path } = props || {}
+  //const segments = useSelectedLayoutSegments()
   const [show, setShow] = useState(false)
-  const collection = (
-    collectionLabels[segments?.[1] as keyof typeof collectionLabels] ? segments[1] : 'pages'
-  ) as keyof typeof collectionLabels
-  const router = useRouter()
+
+  const firstSegment = path?.split('/').filter(Boolean)[0] || 'pages'
+
+  const collection = collectionLabels[firstSegment as keyof typeof collectionLabels]
+    ? firstSegment
+    : 'pages'
+  //const router = useRouter()
 
   const onAuthChange = React.useCallback((user: PayloadMeUser) => {
     setShow(Boolean(user?.id))
@@ -71,9 +75,10 @@ export const AdminBar: React.FC<{
           logo={<Title />}
           onAuthChange={onAuthChange}
           onPreviewExit={() => {
+            // TODO: Re-implement this without next
             fetch('/next/exit-preview').then(() => {
-              router.push('/')
-              router.refresh()
+              //router.push('/')
+              //router.refresh()
             })
           }}
           style={{

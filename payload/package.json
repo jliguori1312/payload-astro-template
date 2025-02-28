@@ -52,8 +52,8 @@
     "payload": "catalog:payload",
     "payload-admin-bar": "^1.0.6",
     "prism-react-renderer": "^2.4.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "catalog:react",
+    "react-dom": "catalog:react",
     "react-hook-form": "7.45.4",
     "sharp": "0.32.6",
     "tailwind-merge": "^2.6.0",
@@ -64,8 +64,8 @@
     "@tailwindcss/typography": "^0.5.16",
     "@types/escape-html": "^1.0.4",
     "@types/node": "22.5.4",
-    "@types/react": "19.0.7",
-    "@types/react-dom": "19.0.3",
+    "@types/react": "catalog:react",
+    "@types/react-dom": "catalog:react",
     "autoprefixer": "^10.4.20",
     "copyfiles": "^2.4.1",
     "eslint": "^9.21.0",
@@ -75,7 +75,7 @@
     "tailwindcss": "^3.4.17",
     "typescript": "5.7.3"
   },
-  "packageManager": "pnpm@10.5.0",
+  "packageManager": "pnpm@10.5.1+sha512.c424c076bd25c1a5b188c37bb1ca56cc1e136fbf530d98bcb3289982a08fd25527b8c9c4ec113be5e3393c39af04521dd647bcf1d0801eaf8ac6a7b14da313af",
   "engines": {
     "node": "^18.20.2 || >=20.9.0"
   }
