@@ -1,12 +1,14 @@
 ---
 import '../styles/global.css'
 import { config } from 'mhr-payload'
-import { AdminBar } from '@/components/AdminBar'
+import { AdminBar } from '../components/react/AdminBar'
 
 // make this cleaner, more dynamic, once we have static params and slugs?
 const url = Astro.url;
 const slug = url.pathname
 //console.log(slug)
+
+const isPreview = true // TODO: get this value from inside componenet, if it stays here it will never change due to SSG
 ---
 <!doctype html>
 <html lang="en">
@@ -17,7 +19,7 @@ const slug = url.pathname
 		<title>Astro Basics</title>
 	</head>
 	<body class="bg-stone-950">
-		<AdminBar path={slug} adminBarProps={{preview: true,}} client:only="react"/>
+		<AdminBar path={slug} adminBarProps={{isPreview,}} client:only="react"/>
 		<slot />
 	</body>
 </html>

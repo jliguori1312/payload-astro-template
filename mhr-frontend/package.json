@@ -18,6 +18,7 @@
     "astro": "^5.3.1",
     "mhr-payload": "workspace:*",
     "payload": "catalog:payload",
+    "payload-admin-bar": "^1.0.6",
     "react": "catalog:react",
     "react-dom": "catalog:react",
     "sass": "^1.85.1",
