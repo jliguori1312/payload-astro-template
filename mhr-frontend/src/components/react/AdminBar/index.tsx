@@ -76,6 +76,7 @@ export const AdminBar: React.FC<{
           onAuthChange={onAuthChange}
           onPreviewExit={() => {
             // TODO: Re-implement this without next
+            //  - Won't work in astro SSG mode. Eventual implementation could be a client componenent that renders the entire page locally from the rest API, if draft mode is enabled.
             fetch('/next/exit-preview').then(() => {
               //router.push('/')
               //router.refresh()

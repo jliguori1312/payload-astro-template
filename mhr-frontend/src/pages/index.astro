@@ -1,9 +1,11 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import { generateMeta } from 'src/utilties/generateMeta';
+
+const metadata = await generateMeta({doc: null}) //pass in page/post once we have it
 
 ---
 
-<Layout>
+<Layout description={metadata.description} openGraph={metadata.openGraph} title={metadata.title}>
 	hello hi
 </Layout>
