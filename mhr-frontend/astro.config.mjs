@@ -1,16 +1,23 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import "dotenv/config";
 
-import tailwindcss from '@tailwindcss/vite';
-import vue from '@astrojs/vue';
+import { defineConfig } from "astro/config";
 
-import react from '@astrojs/react';
+import tailwindcss from "@tailwindcss/vite";
+import vue from "@astrojs/vue";
+
+import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    ssr: {
+      external: true,
+    },
   },
 
-  integrations: [vue(), react()]
+  integrations: [vue(), react()],
+
+  site: "https://your-site-here.com",
 });

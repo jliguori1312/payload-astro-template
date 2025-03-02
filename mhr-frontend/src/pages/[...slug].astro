@@ -1,0 +1,66 @@
+---
+
+import { config as payloadConfig } from 'mhr-payload'
+import { getPayload, type RequiredDataFromCollectionSlug } from 'payload'
+
+import Layout from '../layouts/Layout.astro';
+import { generateMeta } from 'src/utilties/generateMeta';
+
+// TODO: redirects, live preview
+
+export async function getStaticPaths() {
+    const payload = await getPayload({ config: payloadConfig })
+    const pages = await payload.find({
+        collection: 'pages',
+        draft: false,
+        limit: 1000,
+        overrideAccess: false,
+        pagination: false,
+        select: {
+            slug: true,
+        }
+    })
+    
+    const params = pages.docs?.filter((doc) => {
+        return doc.slug !== 'home'
+    }).map(({ slug }) => {
+        return { params: { slug } }
+    })
+
+    return params
+}
+
+let page: RequiredDataFromCollectionSlug<'pages'> | null = null
+
+const queryPageBySlug = async ({ slug }: { slug: string | null }) => {
+    if (page) return page
+    const payload = await getPayload({ config: payloadConfig })
+    const result = await payload.find({
+        collection: 'pages',
+        limit: 1,
+        pagination: false,
+        overrideAccess: false,
+        where: {
+            slug: {
+                equals: slug,
+            },
+        },
+    })
+
+    return result.docs?.[0] || null
+}
+
+const { slug = 'home' } = Astro.params
+const url = '/' + slug
+
+page = await queryPageBySlug({
+    slug,
+})
+
+const {description, openGraph, title} = await generateMeta({doc: page})
+
+ ---
+
+<Layout description={description} openGraph={openGraph} title={title}>
+	hello hi
+</Layout>

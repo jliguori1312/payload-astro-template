@@ -1,7 +1,7 @@
-import type { Media, Page, Post, Config } from "@/payload-types";
+import type { Media, Page, Post, Config } from "mhr-payload";
 
 import { mergeOpenGraph } from "./mergeOpenGraph";
-import { getServerSideURL } from "@/utilities/getURL";
+import { getServerSideURL } from "./getURL";
 
 const getImageURL = (image?: Media | Config["db"]["defaultIDType"] | null) => {
   const serverUrl = getServerSideURL();

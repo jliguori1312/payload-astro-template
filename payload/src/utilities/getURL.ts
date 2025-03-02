@@ -16,10 +16,6 @@ export const getServerSideURL = () => {
 }
 
 export const getClientSideURL = () => {
-  // TEMPORARY - create frontend specific utility to replace this file or just use Astro.url
-  if (import.meta.env.DEV) {
-    return 'http://localhost:3000'
-  }
   if (canUseDOM) {
     const protocol = window.location.protocol
     const domain = window.location.hostname

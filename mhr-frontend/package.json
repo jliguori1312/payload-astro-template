@@ -9,20 +9,27 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.4",
     "@astrojs/react": "^4.2.1",
     "@astrojs/vue": "^5.0.7",
+    "@opentelemetry/api": "^1.9.0",
     "@payloadcms/ui": "catalog:payload",
     "@tailwindcss/vite": "^4.0.9",
     "@types/react": "catalog:react",
     "@types/react-dom": "catalog:react",
-    "astro": "^5.3.1",
+    "astro": "^5.4.1",
+    "clsx": "^2.1.1",
+    "dotenv": "^16.4.7",
     "mhr-payload": "workspace:*",
+    "mongodb": "^6.14.0",
     "payload": "catalog:payload",
     "payload-admin-bar": "^1.0.6",
     "react": "catalog:react",
     "react-dom": "catalog:react",
     "sass": "^1.85.1",
+    "tailwind-merge": "^3.0.2",
     "tailwindcss": "^4.0.9",
+    "typescript": "5.8.2",
     "vue": "^3.5.13"
   }
 }

@@ -1,4 +1,4 @@
-import { getServerSideURL } from "@/utilities/getURL";
+import { getServerSideURL } from "./getURL";
 
 type OpenGraphMetadata = {
   type?: string;
