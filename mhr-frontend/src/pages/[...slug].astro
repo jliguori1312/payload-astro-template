@@ -21,9 +21,9 @@ export async function getStaticPaths() {
         }
     })
     
-    const params = pages.docs?.filter((doc) => {
-        return doc.slug !== 'home'
-    }).map(({ slug }) => {
+    const params = pages.docs?.map(({ slug }) => {
+        if (slug === 'home')
+            return { params: {slug: '' } }
         return { params: { slug } }
     })
 
@@ -32,7 +32,7 @@ export async function getStaticPaths() {
 
 let page: RequiredDataFromCollectionSlug<'pages'> | null = null
 
-const queryPageBySlug = async ({ slug }: { slug: string | null }) => {
+const queryPageBySlug = async ({ slug }: { slug: string }) => {
     if (page) return page
     const payload = await getPayload({ config: payloadConfig })
     const result = await payload.find({
@@ -50,7 +50,7 @@ const queryPageBySlug = async ({ slug }: { slug: string | null }) => {
     return result.docs?.[0] || null
 }
 
-const { slug = 'home' } = Astro.params
+const slug: string = Astro.params.slug ?? 'home';
 const url = '/' + slug
 
 page = await queryPageBySlug({
