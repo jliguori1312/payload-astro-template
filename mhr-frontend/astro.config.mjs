@@ -12,8 +12,8 @@ import react from "@astrojs/react";
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
-    ssr: {
-      external: true,
+    define: {
+      __dirname: JSON.stringify(process.cwd())
     },
   },
 
