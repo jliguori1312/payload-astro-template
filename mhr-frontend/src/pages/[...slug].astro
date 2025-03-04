@@ -3,8 +3,11 @@
 import { config as payloadConfig } from 'mhr-payload'
 import { getPayload, type RequiredDataFromCollectionSlug } from 'payload'
 
-import Layout from '../layouts/Layout.astro';
-import { generateMeta } from 'src/utilties/generateMeta';
+import Layout from '../layouts/Layout.astro'
+import { generateMeta } from 'src/utilties/generateMeta'
+
+import { getRedirects } from 'src/utilties/redirects'
+console.log(await getRedirects())
 
 // TODO: redirects, live preview
 
