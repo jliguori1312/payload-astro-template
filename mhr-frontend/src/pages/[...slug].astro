@@ -6,9 +6,6 @@ import { getPayload, type RequiredDataFromCollectionSlug } from 'payload'
 import Layout from '../layouts/Layout.astro'
 import { generateMeta } from 'src/utilties/generateMeta'
 
-import { getRedirects } from 'src/utilties/redirects'
-console.log(await getRedirects())
-
 // TODO: redirects, live preview
 
 export async function getStaticPaths() {
@@ -26,7 +23,7 @@ export async function getStaticPaths() {
     
     const params = pages.docs?.map(({ slug }) => {
         if (slug === 'home')
-            return { params: {slug: '' } }
+            return { params: {slug: undefined } }
         return { params: { slug } }
     })
 
@@ -35,7 +32,7 @@ export async function getStaticPaths() {
 
 let page: RequiredDataFromCollectionSlug<'pages'> | null = null
 
-const queryPageBySlug = async ({ slug }: { slug: string }) => {
+const queryPageBySlug = async ( slug: string ) => {
     if (page) return page
     const payload = await getPayload({ config: payloadConfig })
     const result = await payload.find({
@@ -56,9 +53,7 @@ const queryPageBySlug = async ({ slug }: { slug: string }) => {
 const slug: string = Astro.params.slug ?? 'home';
 const url = '/' + slug
 
-page = await queryPageBySlug({
-    slug,
-})
+page = await queryPageBySlug( slug )
 
 const {description, openGraph, title} = await generateMeta({doc: page})
 
