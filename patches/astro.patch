@@ -1,0 +1,27 @@
+diff --git a/dist/core/config/vite-load.js b/dist/core/config/vite-load.js
+index 372821b59f00d96e4e2ba684d6f3fd7d89a5ff83..ed77cb1cb65df9ec66ffce5cb365de6f73a83c2c 100644
+--- a/dist/core/config/vite-load.js
++++ b/dist/core/config/vite-load.js
+@@ -2,7 +2,13 @@ import { pathToFileURL } from "node:url";
+ import { createServer } from "vite";
+ import loadFallbackPlugin from "../../vite-plugin-load-fallback/index.js";
+ import { debug } from "../logger/core.js";
++
++import configAliasVitePlugin from '../../vite-plugin-config-alias/index.js';
++import { loadTSConfig } from './tsconfig.js';
++
+ async function createViteServer(root, fs) {
++  const tsConfig = await loadTSConfig(root);
++
+   const viteServer = await createServer({
+     configFile: false,
+     server: { middlewareMode: true, hmr: false, watch: null, ws: false },
+@@ -10,7 +16,7 @@ async function createViteServer(root, fs) {
+     clearScreen: false,
+     appType: "custom",
+     ssr: { external: true },
+-    plugins: [loadFallbackPlugin({ fs, root: pathToFileURL(root) })]
++    plugins: [loadFallbackPlugin({ fs, root: pathToFileURL(root) }), configAliasVitePlugin({ settings: { tsConfig: tsConfig.tsconfig, tsConfigPath: tsConfig.tsconfigFile } })]
+   });
+   return viteServer;
+ }

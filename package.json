@@ -15,6 +15,9 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "sharp"
-    ]
+    ],
+    "patchedDependencies": {
+      "astro": "patches/astro.patch"
+    }
   }
 }
