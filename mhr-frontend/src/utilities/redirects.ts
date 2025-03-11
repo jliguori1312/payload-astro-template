@@ -12,6 +12,7 @@ export async function getRedirects(depth = 1) {
   });
 
   // return redirects in astro format, ensuring slugs includes a preceeding '/'
+  // TODO: add support for collections with slugs not starting at root (ie, 'posts/slug')
 
   const astroRedirs = redirects.reduce((acc, redirect) => {
     const { from, to } = redirect;

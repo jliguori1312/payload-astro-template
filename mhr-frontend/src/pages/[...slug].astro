@@ -4,9 +4,12 @@ import { config as payloadConfig } from 'mhr-payload'
 import { getPayload, type RequiredDataFromCollectionSlug } from 'payload'
 
 import Layout from '../layouts/Layout.astro'
-import { generateMeta } from 'src/utilties/generateMeta'
+import { generateMeta } from 'src/utilities/generateMeta'
 
-// TODO: redirects, live preview
+import RenderHero from '../components/RenderHero.astro'
+import RenderBlocks from '../components/RenderBlocks.astro'
+
+// TODO: post redirects, live preview, draft mode
 
 export async function getStaticPaths() {
     const payload = await getPayload({ config: payloadConfig })
@@ -55,10 +58,12 @@ const url = '/' + slug
 
 page = await queryPageBySlug( slug )
 
+const { hero, layout } = page
 const {description, openGraph, title} = await generateMeta({doc: page})
 
  ---
 
 <Layout description={description} openGraph={openGraph} title={title}>
-	hello hi
+	<RenderHero {...hero} />
+    <RenderBlocks blocks={layout} />
 </Layout>

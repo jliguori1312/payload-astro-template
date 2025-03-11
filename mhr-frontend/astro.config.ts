@@ -2,8 +2,7 @@
 import "dotenv/config";
 
 import { defineConfig } from "astro/config";
-import { getRedirects } from "./src/utilties/redirects";
-import { resolve } from "path";
+import { getRedirects } from "./src/utilities/redirects";
 import { fileURLToPath } from "url";
 
 import tailwindcss from "@tailwindcss/vite";
@@ -19,10 +18,8 @@ export default defineConfig({
     define: {
       __dirname: JSON.stringify(process.cwd()),
     },
-    resolve: {
-      alias: {
-        "@": resolve(__dirname, "node_modules/mhr-payload/src"),
-      },
+    ssr: {
+      noExternal: ["@payloadcms/ui"],
     },
   },
   redirects: await getRedirects(),
