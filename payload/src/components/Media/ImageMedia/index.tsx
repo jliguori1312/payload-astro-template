@@ -1,15 +1,10 @@
-'use client'
-
-import type { StaticImageData } from 'next/image'
-
 import { cn } from '@/utilities/ui'
-import NextImage from 'next/image'
 import React from 'react'
 
 import type { Props as MediaProps } from '../types'
 
 import { cssVariables } from '@/cssVariables'
-import { getClientSideURL } from '@/utilities/getURL'
+import { getServerSideURL } from '@/utilities/getURL'
 
 const { breakpoints } = cssVariables
 
@@ -32,7 +27,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
   let width: number | undefined
   let height: number | undefined
   let alt = altFromProps
-  let src: StaticImageData | string = srcFromProps || ''
+  let src = srcFromProps || ''
 
   if (!src && resource && typeof resource === 'object') {
     const { alt: altFromResource, height: fullHeight, url, width: fullWidth } = resource
@@ -43,7 +38,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
 
     const cacheTag = resource.updatedAt
 
-    src = `${getClientSideURL()}${url}?${cacheTag}`
+    src = `${getServerSideURL()}${url}?${cacheTag}`
   }
 
   const loading = loadingFromProps || (!priority ? 'lazy' : undefined)
@@ -55,20 +50,22 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
         .map(([, value]) => `(max-width: ${value}px) ${value * 2}w`)
         .join(', ')
 
+  const resolvedSrc = typeof src === 'string' ? src : src?.src
+
   return (
     <picture>
-      <NextImage
+      <img
         alt={alt || ''}
         className={cn(imgClassName)}
-        fill={fill}
+        // fill={fill}
         height={!fill ? height : undefined}
-        placeholder="blur"
-        blurDataURL={placeholderBlur}
-        priority={priority}
-        quality={100}
+        // placeholder="blur"
+        // blurDataURL={placeholderBlur}
+        // priority={priority}
+        // quality={100}
         loading={loading}
         sizes={sizes}
-        src={src}
+        src={resolvedSrc}
         width={!fill ? width : undefined}
       />
     </picture>

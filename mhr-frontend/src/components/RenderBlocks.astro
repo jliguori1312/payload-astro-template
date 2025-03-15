@@ -18,23 +18,25 @@ const blockComponents = {
 const { blocks } = Astro.props as { blocks: Page['layout'][0][] }
 
 const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
-
 ---
 {hasBlocks && 
 <Fragment>
-    {blocks.map((block, index) => {
+    {blocks.map((block) => {
         const { blockType } = block
 
         if (blockType && blockType in blockComponents) {
             const Block = blockComponents[blockType]
 
             if (Block) {
-                <div class="my-16" key={index}>
-                    {/* @ts-expect-error */}
-                    <Block {...block} disableInnerContainer />
-                </div>
+                return (
+                    <div class="my-16">
+                        {/* @ts-expect-error */}
+                        <Block {...block} disableInnerContainer />
+                    </div>  
+                )     
             }
         }
+        return null
     })}
 </Fragment> 
 }

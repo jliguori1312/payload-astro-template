@@ -7,7 +7,12 @@
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "paths": {
-      "@/*": ["node_modules/mhr-payload/src/*"]
+      "@/*": [
+        "node_modules/mhr-payload/src/*"
+      ],
+      "@payload-config": [
+        "node_modules/mhr-payload/src/payload.config.ts"
+      ],
     }
   }
 }
