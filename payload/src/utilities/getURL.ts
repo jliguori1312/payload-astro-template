@@ -1,4 +1,4 @@
-import { env } from 'process'
+
 import canUseDOM from './canUseDOM'
 
 export const getServerSideURL = () => {
@@ -21,9 +21,10 @@ export const getClientSideURL = () => {
     const domain = window.location.hostname
     const port = window.location.port
 
+
     return `${protocol}//${domain}${port ? `:${port}` : ''}`
   }
-
+  console.log('can use dom: false')
   if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
     return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
   }

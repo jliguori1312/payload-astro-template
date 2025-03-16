@@ -9,7 +9,7 @@ import { generateMeta } from 'src/utilities/generateMeta'
 import RenderHero from '../components/RenderHero.astro'
 import RenderBlocks from '../components/RenderBlocks.astro'
 
-// TODO: post redirects, live preview, draft mode
+// TODO: post redirects, live preview, draft mode, rebuild media compnenets in astro  to use astro native img/video 
 
 export async function getStaticPaths() {
     const payload = await getPayload({ config: payloadConfig })

@@ -1,7 +1,6 @@
 'use client'
 import { cn } from '@/utilities/ui'
 import useClickableCard from '@/utilities/useClickableCard'
-import Link from 'next/link'
 import React, { Fragment } from 'react'
 
 import type { Post } from '@/payload-types'
@@ -71,9 +70,9 @@ export const Card: React.FC<{
         {titleToUse && (
           <div className="prose">
             <h3>
-              <Link className="not-prose" href={href} ref={link.ref}>
+              <a className="not-prose" href={href} ref={link.ref}>
                 {titleToUse}
-              </Link>
+              </a>
             </h3>
           </div>
         )}

@@ -1,7 +1,7 @@
 ---
 import type { Page } from 'mhr-payload'
 
-import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
+import ArchiveBlock from './blocks/ArchiveBlock.astro'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
@@ -28,12 +28,24 @@ const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
             const Block = blockComponents[blockType]
 
             if (Block) {
-                return (
-                    <div class="my-16">
-                        {/* @ts-expect-error */}
-                        <Block {...block} disableInnerContainer />
-                    </div>  
-                )     
+                switch (blockType) {
+                    case 'formBlock':
+                        console.log('form block')
+                        return (
+                            <div class="my-16">
+                                {/* @ts-expect-error */}
+                                <FormBlock {...block} disableInnerContainer client:only="react"/>
+                            </div>
+                        )
+                    default:
+                        console.log('default dynamic block')
+                        return (
+                            <div class="my-16">
+                                {/* @ts-expect-error */}
+                                <Block {...block} disableInnerContainer />
+                            </div> 
+                        )
+                }    
             }
         }
         return null

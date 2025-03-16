@@ -1,7 +1,6 @@
 'use client'
 import type { FormFieldBlock, Form as FormType } from '@payloadcms/plugin-form-builder/types'
 
-import { useRouter } from 'next/navigation'
 import React, { useCallback, useState } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
 import RichText from '@/components/RichText'
@@ -44,7 +43,6 @@ export const FormBlock: React.FC<
   const [isLoading, setIsLoading] = useState(false)
   const [hasSubmitted, setHasSubmitted] = useState<boolean>()
   const [error, setError] = useState<{ message: string; status?: string } | undefined>()
-  const router = useRouter()
 
   const onSubmit = useCallback(
     (data: FormFieldBlock[]) => {
@@ -97,7 +95,7 @@ export const FormBlock: React.FC<
 
             const redirectUrl = url
 
-            if (redirectUrl) router.push(redirectUrl)
+            if (redirectUrl) window.location.href = redirectUrl
           }
         } catch (err) {
           console.warn(err)
@@ -110,7 +108,7 @@ export const FormBlock: React.FC<
 
       void submitForm()
     },
-    [router, formID, redirect, confirmationType],
+    [formID, redirect, confirmationType],
   )
 
   return (
