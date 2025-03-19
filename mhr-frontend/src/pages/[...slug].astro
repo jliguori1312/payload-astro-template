@@ -54,7 +54,6 @@ const queryPageBySlug = async ( slug: string ) => {
 }
 
 const slug: string = Astro.params.slug ?? 'home';
-const url = '/' + slug
 
 page = await queryPageBySlug( slug )
 
