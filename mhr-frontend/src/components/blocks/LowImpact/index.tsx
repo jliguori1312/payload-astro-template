@@ -2,7 +2,7 @@ import React from 'react'
 
 import type { Page } from 'mhr-payload'
 
-import RichText from 'src/components/RichText'
+import RichText from '@/components/RichText'
 
 type LowImpactHeroType =
   | {

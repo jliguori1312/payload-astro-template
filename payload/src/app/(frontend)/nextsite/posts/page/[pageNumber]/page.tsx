@@ -78,10 +78,10 @@ export async function generateStaticParams() {
 
   const totalPages = Math.ceil(totalDocs / 10)
 
-  const pages: { pageNumber: string }[] = []
+  const pages: { params: { page: string }}[] = []
 
   for (let i = 1; i <= totalPages; i++) {
-    pages.push({ pageNumber: String(i) })
+    pages.push({ params: { page: String(i) }})
   }
 
   return pages

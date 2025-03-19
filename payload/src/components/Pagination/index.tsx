@@ -9,15 +9,14 @@ import {
   PaginationPrevious,
 } from '@/components/ui/pagination'
 import { cn } from '@/utilities/ui'
-import { useRouter } from 'next/navigation'
 import React from 'react'
+import { navigate } from 'astro:transitions/client' // can't get this to resolve, but it is correct and working
 
 export const Pagination: React.FC<{
   className?: string
   page: number
   totalPages: number
 }> = (props) => {
-  const router = useRouter()
 
   const { className, page, totalPages } = props
   const hasNextPage = page < totalPages
@@ -34,7 +33,7 @@ export const Pagination: React.FC<{
             <PaginationPrevious
               disabled={!hasPrevPage}
               onClick={() => {
-                router.push(`/posts/page/${page - 1}`)
+                navigate(`/posts/page/${page - 1}`)
               }}
             />
           </PaginationItem>
@@ -49,7 +48,7 @@ export const Pagination: React.FC<{
             <PaginationItem>
               <PaginationLink
                 onClick={() => {
-                  router.push(`/posts/page/${page - 1}`)
+                  navigate(`/posts/page/${page - 1}`)
                 }}
               >
                 {page - 1}
@@ -61,7 +60,7 @@ export const Pagination: React.FC<{
             <PaginationLink
               isActive
               onClick={() => {
-                router.push(`/posts/page/${page}`)
+                navigate(`/posts/page/${page}`)
               }}
             >
               {page}
@@ -72,7 +71,7 @@ export const Pagination: React.FC<{
             <PaginationItem>
               <PaginationLink
                 onClick={() => {
-                  router.push(`/posts/page/${page + 1}`)
+                  navigate(`/posts/page/${page + 1}`)
                 }}
               >
                 {page + 1}
@@ -90,7 +89,7 @@ export const Pagination: React.FC<{
             <PaginationNext
               disabled={!hasNextPage}
               onClick={() => {
-                router.push(`/posts/page/${page + 1}`)
+                navigate(`/posts/page/${page + 1}`)
               }}
             />
           </PaginationItem>

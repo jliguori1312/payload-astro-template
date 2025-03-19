@@ -2,7 +2,7 @@ import React from 'react'
 
 import type { Page } from 'mhr-payload'
 
-import { CMSLink } from 'src/components/Link'
+import { CMSLink } from '@/components/Link'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 
