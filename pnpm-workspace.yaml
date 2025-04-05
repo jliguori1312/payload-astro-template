@@ -1,6 +1,7 @@
 packages:
   - 'payload'
   - 'mhr-frontend'
+  - 'ui-library'
 
 catalogs:
   payload:
