@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import { ClientRouter } from 'astro:transitions'
-import { AdminBar } from "@/components/AdminBar";
+import { AdminBar } from "../components/react/AdminBar";
 
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
@@ -48,7 +48,7 @@ const isPreview = true; // TODO: get this value from inside componenet, if it st
 	<!-- TODO: Add favicon and webclip -->
     {useTransitions && <ClientRouter />}
   </head>
-  <body class="bg-stone-950">
+  <body class="bg-background text-foreground min-h-[100vh] flex flex-col">
     <AdminBar path={slug} adminBarProps={{ isPreview }} client:only="react" />
 	<Header />
     <slot />
