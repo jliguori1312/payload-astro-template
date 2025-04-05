@@ -1,0 +1,1 @@
+A one to one rebuild of the Payload website template using Astro instead of Next. The goal is to replicate the features and design of the website template as statically generated (ideal for content heavy sites that don't need to be updated often) and also to comprehensively demonstrate the use of other frontend frameworks alongside Payload while using the local API.
