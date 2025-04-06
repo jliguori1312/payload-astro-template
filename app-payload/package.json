@@ -1,7 +1,7 @@
 {
-  "name": "mhr-payload",
+  "name": "app-payload",
   "version": "1.0.0",
-  "description": "Website for Magic Hour Rentals",
+  "description": "",
   "license": "MIT",
   "type": "module",
   "files": [

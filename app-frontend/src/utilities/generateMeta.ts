@@ -1,4 +1,4 @@
-import type { Media, Page, Post, Config } from "mhr-payload";
+import type { Media, Page, Post, Config } from "app-payload";
 
 import { mergeOpenGraph } from "./mergeOpenGraph";
 import { getServerSideURL } from "./getURL";

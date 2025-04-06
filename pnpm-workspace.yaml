@@ -1,6 +1,6 @@
 packages:
-  - 'payload'
-  - 'mhr-frontend'
+  - 'app-payload'
+  - 'app-frontend'
   - 'ui-library'
 
 catalogs:

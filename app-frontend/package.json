@@ -1,5 +1,5 @@
 {
-  "name": "mhr-frontend",
+  "name": "app-frontend",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -27,7 +27,7 @@
     "clsx": "^2.1.1",
     "dotenv": "^16.4.7",
     "lucide-react": "^0.477.0",
-    "mhr-payload": "workspace:*",
+    "app-payload": "workspace:*",
     "mongodb": "^6.15.0",
     "payload": "catalog:payload",
     "payload-admin-bar": "^1.0.7",

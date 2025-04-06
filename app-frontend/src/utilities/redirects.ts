@@ -1,4 +1,4 @@
-import { config as payloadConfig } from "mhr-payload";
+import { config as payloadConfig } from "app-payload";
 import { getPayload } from "payload";
 
 export async function getRedirects(depth = 1) {
