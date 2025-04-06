@@ -8,10 +8,10 @@
     "jsxImportSource": "react",
     "paths": {
       "@/*": [
-        "node_modules/mhr-payload/src/*"
+        "node_modules/app-payload/src/*"
       ],
       "@payload-config": [
-        "node_modules/mhr-payload/src/payload.config.ts"
+        "node_modules/app-payload/src/payload.config.ts"
       ],
     }
   }
