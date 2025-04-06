@@ -3,12 +3,18 @@
   "include": [".astro/types.d.ts", "**/*"],
   "exclude": ["dist"],
   "compilerOptions": {
+    "module": "ESNext",
+    "esModuleInterop": true,
+    "moduleResolution": "bundler",
     "baseUrl": ".",
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "paths": {
       "@/*": [
         "node_modules/app-payload/src/*"
+      ],
+      "ui-library/*": [
+        "node_modules/ui-library/*"
       ],
       "@payload-config": [
         "node_modules/app-payload/src/payload.config.ts"

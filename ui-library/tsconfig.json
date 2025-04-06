@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "preserve",
+    "esModuleInterop": true
+  },
+  "include": [
+      "index.ts",  
+      "react.ts",
+      "vue.ts",
+      "config.ts",
+      "blocks/**/*",
+      "generate-exports.ts"
+    ],
+    "exclude": [
+      "node_modules"
+    ]
+}

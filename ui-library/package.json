@@ -8,7 +8,11 @@
   "license": "MIT",
   "packageManager": "pnpm@10.7.1",
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./react": "./react.ts",
+    "./vue": "./vue.ts",
+    "./astro": "./astro.ts",
+    "./config": "./config.ts"
   },
   "dependencies": {
     "payload": "catalog:payload"
