@@ -17,7 +17,7 @@
     "./config/*": "./src/blocks/*/config.ts"
   },
   "imports": {
-    "#util/*": "./src/utilites/*"
+    "#util/*": "./src/utilities/*.ts"
   },
   "dependencies": {
     
