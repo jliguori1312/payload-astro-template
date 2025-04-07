@@ -6,12 +6,7 @@
     "esModuleInterop": true
   },
   "include": [
-      "index.ts",  
-      "react.ts",
-      "vue.ts",
-      "config.ts",
-      "blocks/**/*",
-      "generate-exports.ts"
+      "src/blocks/**/*",
     ],
     "exclude": [
       "node_modules"
