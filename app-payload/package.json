@@ -4,14 +4,15 @@
   "description": "",
   "license": "MIT",
   "type": "module",
+  "types": "./src/payload-types.ts",
   "files": [
     "dist",
     "payload.config.ts"
   ],
   "exports": {
     ".": {
+      "types": "./src/payload-types.ts",
       "import": "./src/index.ts",
-      "types": "./src/index.ts",
       "default": "./src/index.ts"
     }
   },

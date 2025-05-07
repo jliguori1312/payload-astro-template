@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "module": "NodeNext",
     "moduleResolution": "nodenext",
     "jsx": "preserve",
@@ -8,7 +9,5 @@
   "include": [
       "src/blocks/**/*",
     ],
-    "exclude": [
-      "node_modules"
-    ]
+
 }

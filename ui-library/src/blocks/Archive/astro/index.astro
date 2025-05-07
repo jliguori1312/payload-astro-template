@@ -1,10 +1,10 @@
 ---
-import type { Post, ArchiveBlock as ArchiveBlockProps } from 'app-payload'
+import type { Post, ArchiveBlock as ArchiveBlockProps } from 'app-payload-types'
 
-import { config as payloadConfig } from 'app-payload'
+import { getPayloadConfig } from '#config'
 import { getPayload } from 'payload'
 import React from 'react'
-import RichText from '@/components/RichText'
+import RichText from '#util/components/react/RichText/index.jsx'
 
 import CollectionArchive from './CollectionArchive.astro'
 
@@ -18,7 +18,7 @@ const { id, categories, introContent, limit: limitFromProps, populateBy, selecte
   let posts: Post[] = []
 
   if (populateBy === 'collection') {
-    const payload = await getPayload({ config: payloadConfig })
+    const payload = await getPayload({ config: getPayloadConfig() })
 
     const flattenedCategories = categories?.map((category) => {
       if (typeof category === 'object') return category.id
