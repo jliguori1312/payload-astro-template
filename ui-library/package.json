@@ -20,26 +20,27 @@
     "#util/*": "./src/utilities/*",
     "#config": "./src/config.ts"
   },
-  "dependencies": {
-    
-  },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.3",
     "@types/node": "22.13.8",
     "@types/react": "catalog:react",
     "@types/react-dom": "catalog:react",
+    "app-payload-types": "workspace:app-payload@*",
     "astro": "^5.5.3",
+    "clsx": "^2.1.1",
     "react": "^19.1.0",
+    "tailwind-merge": "^3.2.0",
     "tailwindcss": "^4.1.3",
     "tsx": "^4.19.3",
     "typescript": "5.8.2",
-    "vue": "^3.5.13",
-    "app-payload-types": "workspace:app-payload@*"
+    "vue": "^3.5.13"
   },
   "peerDependencies": {
-    "tailwindcss": "^4.0.0",
+    "@payloadcms/richtext-lexical": "catalog:payload",
+    "clsx": "^2.1.1",
     "payload": "catalog:payload",
-    "@payloadcms/richtext-lexical": "catalog:payload"
+    "tailwind-merge": "^3.2.0",
+    "tailwindcss": "^4.0.0"
   },
   "peerDependenciesMeta": {
     "astro": {
