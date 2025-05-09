@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { Page } from 'app-payload-types'
+import type { Page } from 'app-payload/types'
 
 import RichText from '#components/react/RichText/index.jsx'
 

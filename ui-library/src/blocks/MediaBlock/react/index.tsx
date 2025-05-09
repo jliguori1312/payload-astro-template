@@ -4,7 +4,7 @@ import { cn } from '#util/ui.js'
 import React from 'react'
 import RichText from '#components/react/RichText/index.jsx'
 
-import type { MediaBlock as MediaBlockProps } from 'app-payload-types'
+import type { MediaBlock as MediaBlockProps } from 'app-payload/types'
 
 import { Media } from '#components/react/Media/index.jsx'
 

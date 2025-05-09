@@ -1,7 +1,7 @@
 
 import type { ElementType, Ref } from 'react'
 
-import type { Media as MediaType } from 'app-payload-types'
+import type { Media as MediaType } from 'app-payload/types'
 
 export interface Props {
   alt?: string

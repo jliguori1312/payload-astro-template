@@ -1,6 +1,6 @@
 import type { Field, GroupField } from 'payload'
 
-import deepMerge from '#util/deepMerge.ts'
+import deepMerge from '#util/deepMerge.js'
 
 export type LinkAppearances = 'default' | 'outline'
 

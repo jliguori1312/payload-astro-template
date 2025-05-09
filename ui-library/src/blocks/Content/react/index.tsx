@@ -2,7 +2,7 @@ import { cn } from '#util/ui.js'
 import React from 'react'
 import RichText from '#components/react/RichText/index.jsx'
 
-import type { ContentBlock as ContentBlockProps } from 'app-payload-types'
+import type { ContentBlock as ContentBlockProps } from 'app-payload/types'
 
 import { CMSLink } from '#components/react/Link/index.jsx'
 

@@ -17,7 +17,7 @@ import type {
   BannerBlock as BannerBlockProps,
   CallToActionBlock as CTABlockProps,
   MediaBlock as MediaBlockProps,
-} from 'app-payload-types'
+} from 'app-payload/types'
 import { BannerBlock } from '#blocks/Banner/react/index.jsx'
 import { CallToActionBlock } from '#blocks/CallToAction/react/index.jsx'
 import { cn } from '#util/ui.js'

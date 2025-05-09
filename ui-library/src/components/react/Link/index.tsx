@@ -2,7 +2,7 @@ import { Button, type ButtonProps } from '#components/react/ui/button.jsx'
 import { cn } from '#util/ui.js'
 import React from 'react'
 
-import type { Page, Post } from 'app-payload-types'
+import type { Page, Post } from 'app-payload/types'
 
 type CMSLinkType = {
   appearance?: 'inline' | ButtonProps['variant']

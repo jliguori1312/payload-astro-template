@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { Page } from 'app-payload-types'
+import type { Page } from 'app-payload/types'
 
 import { CMSLink } from '#components/react/Link/index.jsx'
 import { Media } from '#components/react/Media/index.jsx'
