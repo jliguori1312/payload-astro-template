@@ -1,12 +1,12 @@
-import type { StaticImageData } from 'next/image'
 
-import { cn } from '@/utilities/ui'
+
+import { cn } from '#util/ui.js'
 import React from 'react'
-import RichText from '@/components/RichText'
+import RichText from '#components/react/RichText/index.jsx'
 
-import type { MediaBlock as MediaBlockProps } from '@/payload-types'
+import type { MediaBlock as MediaBlockProps } from 'app-payload-types'
 
-import { Media } from '@/components/Media'
+import { Media } from '#components/react/Media/index.jsx'
 
 type Props = MediaBlockProps & {
   breakout?: boolean
@@ -14,7 +14,7 @@ type Props = MediaBlockProps & {
   className?: string
   enableGutter?: boolean
   imgClassName?: string
-  staticImage?: StaticImageData
+  staticImage?: string
   disableInnerContainer?: boolean
 }
 
