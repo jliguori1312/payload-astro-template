@@ -1,9 +1,9 @@
-import { cn } from '@/utilities/ui'
+import { cn } from '#util/ui.js'
 import React from 'react'
 
-import type { Props as MediaProps } from '../types'
+import type { Props as MediaProps } from '../types.js'
 
-import { getServerSideURL } from '@/utilities/getURL'
+import { getServerSideURL } from '#util/getURL.js'
 
 export const VideoMedia: React.FC<MediaProps> = (props) => {
   const { onClick, resource, videoClassName } = props

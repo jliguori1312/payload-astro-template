@@ -1,10 +1,10 @@
-import { cn } from '@/utilities/ui'
+import { cn } from '#util/ui.js'
 import React from 'react'
 
-import type { Props as MediaProps } from '../types'
+import type { Props as MediaProps } from '../types.js'
 
-import { cssVariables } from '@/cssVariables'
-import { getServerSideURL } from 'src/utilities/getURL'
+import { cssVariables } from '#util/cssVariables.js'
+import { getServerSideURL } from '#util/getURL.js'
 
 const { breakpoints } = cssVariables
 

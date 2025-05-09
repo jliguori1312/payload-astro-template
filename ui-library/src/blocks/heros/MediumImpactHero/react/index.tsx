@@ -1,10 +1,10 @@
 import React from 'react'
 
-import type { Page } from 'mhr-payload'
+import type { Page } from 'app-payload-types'
 
-import { CMSLink } from '@/components/Link'
-import { Media } from '@/components/Media'
-import RichText from '@/components/RichText'
+import { CMSLink } from '#components/react/Link/index.jsx'
+import { Media } from '#components/react/Media/index.jsx'
+import RichText from '#components/react/RichText/index.jsx'
 
 export const MediumImpactHero: React.FC<Page['hero']> = ({ links, media, richText }) => {
   return (

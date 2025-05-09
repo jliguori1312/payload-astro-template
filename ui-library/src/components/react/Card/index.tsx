@@ -1,11 +1,11 @@
 'use client'
-import { cn } from '../../../ui'
-import useClickableCard from '../../../useClickableCard'
+import { cn } from '#util/ui.js'
+import useClickableCard from '#util/useClickableCard.js'
 import React, { Fragment } from 'react'
 
 import type { Post } from 'app-payload-types'
 
-import { Media } from '../Media'
+import { Media } from '#components/react/Media/index.jsx'
 
 export type CardPostData = Pick<Post, 'slug' | 'categories' | 'meta' | 'title'>
 

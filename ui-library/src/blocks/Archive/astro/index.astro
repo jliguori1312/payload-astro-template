@@ -4,9 +4,9 @@ import type { Post, ArchiveBlock as ArchiveBlockProps } from 'app-payload-types'
 import { getPayloadConfig } from '#config'
 import { getPayload } from 'payload'
 import React from 'react'
-import RichText from '#util/components/react/RichText/index.jsx'
+import RichText from '#components/react/RichText/index.jsx'
 
-import CollectionArchive from './CollectionArchive.astro'
+import CollectionArchive from '#components/astro/CollectionArchive.astro'
 
 const { id, categories, introContent, limit: limitFromProps, populateBy, selectedDocs } = Astro.props as
   ArchiveBlockProps & {

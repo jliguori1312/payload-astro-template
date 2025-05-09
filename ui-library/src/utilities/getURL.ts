@@ -1,0 +1,36 @@
+import canUseDOM from "./canUseDOM.js";
+
+export const getServerSideURL = () => {
+  //let url = import.meta.env.SITE;
+  let url = 'http://localhost:3000'
+  
+  if (!url && process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  }
+
+  if (!url) {
+    url = "http://localhost:3000";
+  }
+
+  return url;
+};
+
+export const getClientSideURL = () => {
+  // TEMPORARY - create frontend specific utility to replace this file or just use Astro.url
+  if (import.meta.env.DEV) {
+    return "http://localhost:3000";
+  }
+  if (canUseDOM) {
+    const protocol = window.location.protocol;
+    const domain = window.location.hostname;
+    const port = window.location.port;
+
+    return `${protocol}//${domain}${port ? `:${port}` : ""}`;
+  }
+
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  }
+
+  return process.env.NEXT_PUBLIC_SERVER_URL || "";
+};

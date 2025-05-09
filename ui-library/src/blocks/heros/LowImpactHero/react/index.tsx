@@ -1,8 +1,8 @@
 import React from 'react'
 
-import type { Page } from 'mhr-payload'
+import type { Page } from 'app-payload-types'
 
-import RichText from '@/components/RichText'
+import RichText from '#components/react/RichText/index.jsx'
 
 type LowImpactHeroType =
   | {
