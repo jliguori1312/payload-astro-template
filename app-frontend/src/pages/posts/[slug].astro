@@ -8,7 +8,7 @@ import { generateMeta } from 'src/utilities/generateMeta'
 import { RelatedPosts } from '@/blocks/RelatedPosts/Component'
 import RichText from 'ui-library/component/react/RichText/index.jsx'
 
-import { PostHero } from '@/heros/PostHero'
+import { PostHero } from 'ui-library/react/heros/PostHero'
 
 export const getStaticPaths = (async () => {
     const payload = await getPayload({ config: payloadConfig })

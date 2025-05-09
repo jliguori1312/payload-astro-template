@@ -2,7 +2,7 @@
 
 import type { PayloadAdminBarProps, PayloadMeUser } from "payload-admin-bar";
 
-import { cn } from "src/utilities/ui";
+import { cn } from "#util/ui.js";
 //import { useSelectedLayoutSegments } from 'next/navigation'
 import { PayloadAdminBar } from "payload-admin-bar";
 import React, { useState } from "react";
@@ -10,7 +10,7 @@ import React, { useState } from "react";
 
 import "./index.scss";
 
-import { getClientSideURL } from "src/utilities/getURL";
+import { getClientSideURL } from "#util/getURL.js";
 
 const baseClass = "admin-bar";
 

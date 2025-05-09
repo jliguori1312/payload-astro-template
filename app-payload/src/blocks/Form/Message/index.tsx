@@ -1,4 +1,4 @@
-import RichText from '@/components/RichText'
+import RichText from 'ui-library/component/react/RichText/index.jsx'
 import React from 'react'
 
 import { Width } from '../Width'

@@ -323,6 +323,9 @@ importers:
       payload:
         specifier: catalog:payload
         version: 3.33.0(graphql@16.10.0)(typescript@5.8.2)
+      payload-admin-bar:
+        specifier: ^1.0.7
+        version: 1.0.7(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
     devDependencies:
       '@payloadcms/ui':
         specifier: ^3.37.0

@@ -15,7 +15,8 @@
     "./astro/*": "./src/blocks/*/astro/index.astro",
     "./vue/*": "./src/blocks/*/vue/index.vue",
     "./config/*": "./src/blocks/*/config.ts",
-    "./component/*": "./src/components/*"
+    "./component/*": "./src/components/*",
+    "./field/*": "./src/fields/*.ts"
   },
   "imports": {
     "#util/*": "./src/utilities/*",
@@ -73,5 +74,8 @@
     "tailwindcss": {
       "optional": false
     }
+  },
+  "dependencies": {
+    "payload-admin-bar": "^1.0.7"
   }
 }
