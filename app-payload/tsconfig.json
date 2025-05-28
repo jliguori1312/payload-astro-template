@@ -39,9 +39,6 @@
       ],
       "@/*": [
         "./src/*"
-      ],
-      "ui-library/*": [
-        "node_modules/ui-library/*"
       ]
     }
   },
