@@ -1,10 +1,10 @@
 import clsx from 'clsx'
 import React from 'react'
-import RichText from '@/components/RichText'
+import RichText from 'ui-library/component/react/RichText/index.jsx'
 
 import type { Post } from '@/payload-types'
 
-import { Card } from '../../components/Card'
+import { Card } from 'ui-library/component/react/Card/index.jsx'
 import { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 
 export type RelatedPostsProps = {

@@ -50,7 +50,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
         .map(([, value]) => `(max-width: ${value}px) ${value * 2}w`)
         .join(', ')
 
-  const resolvedSrc = typeof src === 'string' ? src : src?.src
+  //const resolvedSrc = typeof src === 'string' ? src : src?.src
 
   return (
     <picture>
@@ -65,7 +65,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
         // quality={100}
         loading={loading}
         sizes={sizes}
-        src={resolvedSrc}
+        src={src}
         width={!fill ? width : undefined}
       />
     </picture>
