@@ -5,7 +5,7 @@ import React from 'react'
 import type { Footer } from '@/payload-types'
 
 import { ThemeSelector } from '@/providers/Theme/ThemeSelector'
-import { CMSLink } from '@/components/Link'
+import { CMSLink } from 'ui-library/component/react/Link/index.jsx'
 import { Logo } from '@/components/Logo/Logo'
 
 export async function Footer() {

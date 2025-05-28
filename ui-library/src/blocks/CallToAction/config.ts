@@ -7,7 +7,7 @@ import {
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 
-import { linkGroup } from '#fields/linkGroup.js'
+import { linkGroup } from '#fields/linkGroup.ts'
 
 export const CallToAction: Block = {
   slug: 'cta',
