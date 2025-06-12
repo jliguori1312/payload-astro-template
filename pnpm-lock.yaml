@@ -358,7 +358,7 @@ importers:
         specifier: workspace:*
         version: link:../app-payload
       astro:
-        specifier: ^5.5.3
+        specifier: ^5.6.1
         version: 5.6.1(patch_hash=de23980eb14341816ac47dcdfa79b824582a6c80061c3ad2ac1829dd2bf5430a)(@types/node@22.13.8)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.39.0)(sass@1.86.3)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.1)
       clsx:
         specifier: ^2.1.1

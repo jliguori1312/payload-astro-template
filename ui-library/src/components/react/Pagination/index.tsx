@@ -1,4 +1,4 @@
-'use client'
+
 import {
   Pagination as PaginationComponent,
   PaginationContent,
@@ -7,8 +7,8 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from 'ui-library/component/react/ui/pagination.tsx'
-import { cn } from '@/utilities/ui'
+} from '#components/react/ui/pagination.tsx'
+import { cn } from '#util/ui.ts'
 import React from 'react'
 import { navigate } from 'astro:transitions/client'
 
