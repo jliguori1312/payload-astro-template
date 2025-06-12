@@ -5,7 +5,7 @@ import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { Archive } from 'ui-library/config/Archive'
 import { CallToAction } from 'ui-library/config/CallToAction'
 import { Content } from 'ui-library/config/Content'
-//import { FormBlock } from '../../blocks/Form/config' // RE ENABLE
+import { FormBlock } from 'ui-library/config/Form'
 import { MediaBlock } from 'ui-library/config/MediaBlock'
 import { hero } from 'ui-library/config/heros'
 import { slugField } from '@/fields/slug'
@@ -75,7 +75,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, /*FormBlock*/],
+              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock],
               required: true,
               admin: {
                 initCollapsed: true,

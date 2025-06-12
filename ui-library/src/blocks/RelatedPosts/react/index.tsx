@@ -4,7 +4,7 @@ import RichText from 'ui-library/component/react/RichText/index.jsx'
 
 import type { Post } from 'app-payload/types'
 
-import { Card } from 'ui-library/component/react/Card/index.jsx'
+import { Card } from 'ui-library/component/react/Card/index.tsx'
 import { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 
 export type RelatedPostsProps = {

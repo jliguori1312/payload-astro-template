@@ -7,10 +7,10 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from '@/components/ui/pagination'
+} from 'ui-library/component/react/ui/pagination.tsx'
 import { cn } from '@/utilities/ui'
 import React from 'react'
-import { navigate } from 'astro:transitions/client' // can't get this to resolve, but it is correct and working
+import { navigate } from 'astro:transitions/client'
 
 export const Pagination: React.FC<{
   className?: string
