@@ -3,12 +3,12 @@ import type { FormFieldBlock, Form as FormType } from '@payloadcms/plugin-form-b
 
 import React, { useCallback, useState } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
-import RichText from 'ui-library/component/react/RichText/index.jsx'
-import { Button } from '@/components/ui/button'
+import RichText from '#components/react/RichText/index.tsx'
+import { Button } from '#components/react/ui/button.tsx'
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 
-import { fields } from './fields'
-import { getClientSideURL } from '@/utilities/getURL'
+import { fields } from './fields.tsx'
+import { getClientSideURL } from '#util/getURL.ts'
 
 export type FormBlockType = {
   blockName?: string

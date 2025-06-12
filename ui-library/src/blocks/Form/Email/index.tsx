@@ -1,12 +1,12 @@
 import type { EmailField } from '@payloadcms/plugin-form-builder/types'
 import type { FieldErrorsImpl, FieldValues, UseFormRegister } from 'react-hook-form'
 
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+import { Input } from '#components/react/ui/input.tsx'
+import { Label } from '#components/react/ui/label.tsx'
 import React from 'react'
 
-import { Error } from '../Error'
-import { Width } from '../Width'
+import { Error } from '../Error/index.tsx'
+import { Width } from '../Width/index.tsx'
 
 export const Email: React.FC<
   EmailField & {
