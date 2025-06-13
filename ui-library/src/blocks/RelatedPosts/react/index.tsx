@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import React from 'react'
-import RichText from '#components/react/RichText/index.jsx'
+import RichText from '#components/react/RichText/index.tsx'
 
 import type { Post } from 'app-payload/types'
 
