@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../../node_modules/ui-library/src";
 
 @layer base {
     *,
@@ -6,7 +7,7 @@
     ::before,
     ::backdrop,
     ::file-selector-button {
-        border-color: var(--color-gray-200, currentcolor);
+        border-color: var(--color-gray-200, currentcolor)
     }
     h1,
     h2,
@@ -81,7 +82,7 @@
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 0, 0%, 15%, 0.8;
+    --border: 0 0% 15% / 0.8;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
 
