@@ -1,0 +1,54 @@
+---
+import type { Page } from 'app-payload'
+
+import ArchiveBlock from 'ui-library/astro/Archive'
+import { CallToActionBlock } from 'ui-library/react/CallToAction'
+import { ContentBlock } from 'ui-library/react/Content'
+import { FormBlock } from 'ui-library/react/Form'
+import { MediaBlock } from 'ui-library/react/MediaBlock'
+
+const blockComponents = {
+    archive: ArchiveBlock,
+    content: ContentBlock,
+    cta: CallToActionBlock,
+    formBlock: FormBlock,
+    mediaBlock: MediaBlock
+}
+
+const { blocks } = Astro.props as { blocks: Page['layout'][0][] }
+
+const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
+---
+{hasBlocks && 
+<Fragment>
+    {blocks.map((block) => {
+        const { blockType } = block
+
+        if (blockType && blockType in blockComponents) {
+            const Block = blockComponents[blockType]
+
+            if (Block) {
+                switch (blockType) {
+                    case 'formBlock':
+                        console.log('form block')
+                        return (
+                            <div class="my-16">
+                                {/* @ts-expect-error */}
+                                <FormBlock {...block} disableInnerContainer client:only="react"/>
+                            </div>
+                        )
+                    default:
+                        console.log('default dynamic block')
+                        return (
+                            <div class="my-16">
+                                {/* @ts-expect-error */}
+                                <Block {...block} disableInnerContainer />
+                            </div> 
+                        )
+                }    
+            }
+        }
+        return null
+    })}
+</Fragment> 
+}

@@ -1,21 +1,22 @@
 packages:
-  - 'payload'
-  - 'mhr-frontend'
+  - 'app-payload'
+  - 'app-frontend'
+  - 'ui-library'
 
 catalogs:
   payload:
-    "@payloadcms/db-mongodb": ^3.33.0
-    "@payloadcms/live-preview-react": ^3.33.0
-    "@payloadcms/next": ^3.33.0
-    "@payloadcms/payload-cloud": ^3.33.0
-    "@payloadcms/plugin-form-builder": ^3.33.0
-    "@payloadcms/plugin-nested-docs": ^3.33.0
-    "@payloadcms/plugin-redirects": ^3.33.0
-    "@payloadcms/plugin-search": ^3.33.0
-    "@payloadcms/plugin-seo": ^3.33.0
-    "@payloadcms/richtext-lexical": ^3.33.0
-    "@payloadcms/ui": ^3.33.0
-    payload: ^3.33.0
+    "@payloadcms/db-mongodb": ^3.43.0
+    "@payloadcms/live-preview-react": ^3.43.0
+    "@payloadcms/next": ^3.43.0
+    "@payloadcms/payload-cloud": ^3.43.0
+    "@payloadcms/plugin-form-builder": ^3.43.0
+    "@payloadcms/plugin-nested-docs": ^3.43.0
+    "@payloadcms/plugin-redirects": ^3.43.0
+    "@payloadcms/plugin-search": ^3.43.0
+    "@payloadcms/plugin-seo": ^3.43.0
+    "@payloadcms/richtext-lexical": ^3.43.0
+    "@payloadcms/ui": ^3.43.0
+    payload: ^3.43.0
   react:
     react: "^19.1.0"
     react-dom: "^19.1.0"

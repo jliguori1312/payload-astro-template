@@ -1,0 +1,31 @@
+---
+import { cn } from '#util/ui.js'
+
+import { Card } from '#components/react/Card/index.tsx'
+import type { CardPostData } from '#components/react/Card/index.tsx'
+
+export type Props = {
+    posts: CardPostData[]
+}
+
+const { posts } = Astro.props as Props
+
+---
+
+<div class={cn('container')}>
+    <div>
+      <div class="grid grid-cols-4 sm:grid-cols-8 lg:grid-cols-12 gap-y-4 gap-x-4 lg:gap-y-8 lg:gap-x-8 xl:gap-x-8">
+        {posts?.map((result) => {
+          if (typeof result === 'object' && result !== null) {
+            return (
+              <div class="col-span-4">
+                <Card className="h-full" doc={result} relationTo="posts" showCategories client:load />
+              </div>
+            )
+          }
+
+          return null
+        })}
+      </div>
+    </div>
+  </div>

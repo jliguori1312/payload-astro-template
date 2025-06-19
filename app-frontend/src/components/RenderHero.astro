@@ -1,0 +1,27 @@
+---
+
+import type { Page } from 'app-payload'
+
+import { HighImpactHero } from 'ui-library/react/heros/HighImpactHero'
+import { LowImpactHero } from 'ui-library/react/heros/LowImpactHero'
+import { MediumImpactHero } from 'ui-library/react/heros/MediumImpactHero'
+
+
+const heros = {
+    highImpact: HighImpactHero,
+    lowImpact: LowImpactHero,
+    mediumImpact: MediumImpactHero
+}
+
+const props = Astro.props as Page['hero']
+const type = props.type
+
+let HeroToRender = null
+if (type && type !== 'none') {
+    HeroToRender = heros[type]
+}
+
+
+---
+
+{HeroToRender && <HeroToRender {...props} />}

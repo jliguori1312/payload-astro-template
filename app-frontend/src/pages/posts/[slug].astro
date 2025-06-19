@@ -1,0 +1,80 @@
+---
+import { config as payloadConfig, type Post } from 'app-payload'
+import { getPayload } from 'payload'
+import type { InferGetStaticParamsType, InferGetStaticPropsType, GetStaticPaths } from 'astro'
+
+import Layout from 'src/layouts/Layout.astro'
+import { generateMeta } from 'src/utilities/generateMeta'
+import { RelatedPosts } from 'ui-library/react/RelatedPosts'
+import RichText from 'ui-library/component/react/RichText/index.tsx'
+
+import { PostHero } from 'ui-library/react/heros/PostHero'
+
+export const getStaticPaths = (async () => {
+    const payload = await getPayload({ config: payloadConfig })
+    const posts = await payload.find({
+        collection: 'posts',
+        draft: false,
+        limit: 1000,
+        overrideAccess: false,
+        pagination: false,
+        select: {
+            slug: true,
+        }
+    })
+    
+    const params = posts.docs?.map(({ slug }) => {
+        return { params: { slug: slug! } }
+    })
+
+    return params
+}) satisfies GetStaticPaths
+
+type Params = InferGetStaticParamsType<typeof getStaticPaths>
+type Props = InferGetStaticPropsType<typeof getStaticPaths>
+
+let post: Post
+const queryPostBySlug = async ( slug: string ) => {
+    if (post) return post
+    const payload = await getPayload({ config: payloadConfig })
+    const result = await payload.find({
+        collection: 'posts',
+        limit: 1,
+        pagination: false,
+        overrideAccess: false,
+        where: {
+            slug: {
+                equals: slug,
+            },
+        },
+    })
+
+    return result.docs?.[0] || null
+}
+
+const { slug = '' } = Astro.params as Params
+post = await queryPostBySlug(slug)
+
+const { description, openGraph, title } = await generateMeta({doc: post})
+
+---
+
+<Layout useTransitions={false} description={description} openGraph={openGraph} title={title}>
+    <article class="pt-16 pb-16">
+
+        <PostHero post={post} />
+
+        <div class="flex flex-col items-center gap-4 pt-8">
+            <div class="container">
+                <RichText className='max-w-[48rem] mx-auto' data={post.content} enableGutter={false} />
+                {post.relatedPosts && post.relatedPosts.length > 0 && (
+                    <RelatedPosts
+                    className='mt-12 max-w-[52rem] lg:grid lg:grid-cols-subgrid col-start-1 col-span-3 grid-rows-[2fr]'
+                    docs={post.relatedPosts.filter((post) => typeof post === 'object')}
+                    client:load
+                    />
+                )}
+            </div>
+        </div>
+    </article>
+</Layout>
