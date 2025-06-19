@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react'
 
 import type { Header } from '@/payload-types'
 
-import { Logo } from '@/components/Logo/Logo'
+import { Logo } from 'ui-library/component/react/Logo/index.tsx'
 import { HeaderNav } from './Nav'
 
 interface HeaderClientProps {
