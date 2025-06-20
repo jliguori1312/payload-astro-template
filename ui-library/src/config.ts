@@ -7,7 +7,7 @@ interface UIRegistry {
 
 let registry: UIRegistry | null = null;
 
-// Function to set the payload types and config and save it globally
+// Function to set the payload config and save it globally
 export function setupUI( payloadConfig: SanitizedConfig ): void {
   registry.config = payloadConfig;
 }
@@ -19,5 +19,3 @@ export function getPayloadConfig(): SanitizedConfig {
   }
   return registry.config as SanitizedConfig;
 }
-
-// TODO: clean up this file and remove types. Finish researching dev dependencies and implement types that way most likely.
