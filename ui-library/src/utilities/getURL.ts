@@ -1,8 +1,11 @@
 import canUseDOM from "./canUseDOM.js";
 
 export const getServerSideURL = () => {
-  //let url = import.meta.env.SITE;
-  let url = 'http://localhost:3000'
+  
+  if (import.meta.env.DEV) {
+    return "http://localhost:3000";
+  }
+  let url = import.meta.env.SITE;
   
   if (!url && process.env.VERCEL_PROJECT_PRODUCTION_URL) {
     return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
@@ -16,7 +19,7 @@ export const getServerSideURL = () => {
 };
 
 export const getClientSideURL = () => {
-  // TEMPORARY - create frontend specific utility to replace this file or just use Astro.url
+ 
   if (import.meta.env.DEV) {
     return "http://localhost:3000";
   }
