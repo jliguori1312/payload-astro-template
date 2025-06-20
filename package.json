@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:payload": "cd payload && cross-env NODE_OPTIONS=--no-deprecation next dev",
-    "dev:astro": "cd mhr-frontend && astro dev --host 0.0.0.0"
+    "dev:payload": "cd app-payload && cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "dev:astro": "cd app-frontend && NODE_OPTIONS=--no-deprecation astro dev --host 0.0.0.0"
   },
   "keywords": [],
   "author": "Jeremy Liguori",
@@ -17,9 +17,6 @@
       "@parcel/watcher",
       "esbuild",
       "sharp"
-    ],
-    "patchedDependencies": {
-      "astro": "patches/astro.patch"
-    }
+    ]
   }
 }
