@@ -2,6 +2,7 @@ packages:
   - 'app-payload'
   - 'app-frontend'
   - 'ui-library'
+  - 'astro-payload-local-loader'
 
 catalogs:
   payload:
