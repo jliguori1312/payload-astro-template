@@ -1,11 +1,11 @@
-import canUseDOM from "./canUseDOM.js";
+import canUseDOM from "./canUseDOM.ts";
 
 export const getServerSideURL = () => {
   
-  if (import.meta.env.DEV) {
+  if (import.meta.env?.DEV) {
     return "http://localhost:3000";
   }
-  let url = import.meta.env.SITE;
+  let url = import.meta.env?.SITE;
   
   if (!url && process.env.VERCEL_PROJECT_PRODUCTION_URL) {
     return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;

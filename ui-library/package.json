@@ -16,7 +16,8 @@
     "./vue/*": "./src/blocks/*/vue/index.vue",
     "./config/*": "./src/blocks/*/config.ts",
     "./component/*": "./src/components/*",
-    "./field/*": "./src/fields/*.ts"
+    "./field/*": "./src/fields/*.ts",
+    "./utilities/*": "./src/utilities/*.ts"
   },
   "imports": {
     "#util/*": "./src/utilities/*",
