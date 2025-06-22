@@ -1,7 +1,5 @@
 ---
-import { config as payloadConfig, type Post } from 'app-payload'
-import { getPayload } from 'payload'
-import type { InferGetStaticParamsType, InferGetStaticPropsType, GetStaticPaths } from 'astro'
+import type { InferGetStaticPropsType, GetStaticPaths } from 'astro'
 
 import Layout from 'src/layouts/Layout.astro'
 import { generateMeta } from 'src/utilities/generateMeta'
@@ -9,52 +7,25 @@ import { RelatedPosts } from 'ui-library/react/RelatedPosts'
 import RichText from 'ui-library/component/react/RichText/index.tsx'
 
 import { PostHero } from 'ui-library/react/heros/PostHero'
+import { getCollection } from 'astro:content'
 
 export const getStaticPaths = (async () => {
-    const payload = await getPayload({ config: payloadConfig })
-    const posts = await payload.find({
-        collection: 'posts',
-        draft: false,
-        limit: 1000,
-        overrideAccess: false,
-        pagination: false,
-        select: {
-            slug: true,
-        }
-    })
+    const allPosts = await getCollection('posts')
     
-    const params = posts.docs?.map(({ slug }) => {
-        return { params: { slug: slug! } }
+    const params = allPosts.map(({ data: post}) => {
+        const { slug } = post
+        return {
+            params: { slug },
+            props: { post }
+        }
     })
 
     return params
 }) satisfies GetStaticPaths
 
-type Params = InferGetStaticParamsType<typeof getStaticPaths>
 type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
-let post: Post
-const queryPostBySlug = async ( slug: string ) => {
-    if (post) return post
-    const payload = await getPayload({ config: payloadConfig })
-    const result = await payload.find({
-        collection: 'posts',
-        limit: 1,
-        pagination: false,
-        overrideAccess: false,
-        where: {
-            slug: {
-                equals: slug,
-            },
-        },
-    })
-
-    return result.docs?.[0] || null
-}
-
-const { slug = '' } = Astro.params as Params
-post = await queryPostBySlug(slug)
-
+const { post } = Astro.props
 const { description, openGraph, title } = await generateMeta({doc: post})
 
 ---

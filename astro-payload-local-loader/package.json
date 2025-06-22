@@ -1,9 +1,8 @@
 {
   "name": "astro-payload-local-loader",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Astro content loader for Payload CMS, using the local API",
   "type": "module",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,8 +12,17 @@
     "payload-cms"
   ],
   "author": "Jeremy Liguori",
-  "license": "ISC",
+  "license": "MIT",
   "packageManager": "pnpm@10.7.1",
+  "exports": {
+    ".": "./payload-local-loader.ts"
+  },
+  "files": [
+    "payload-local-loader.ts",
+    "package.json",
+    "README.md",
+    "tsconfig.json"
+  ],
   "devDependencies": {
     "@types/node": "24.0.3",
     "astro": "^5.10.0",

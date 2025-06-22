@@ -7,18 +7,15 @@ import { config as payloadConfig } from 'app-payload'
 import { getPayload } from 'payload'
 
 import Layout from 'src/layouts/Layout.astro'
+import { getCollection } from 'astro:content'
 
 
 
 
 export const getStaticPaths = (async () => {
     const pageLimit = 10
-    const payload = await getPayload({ config: payloadConfig })
-    const { totalDocs } = await payload.count({
-        collection: 'posts',
-        overrideAccess: false,
-    })
-
+    const allPosts = await getCollection('posts')
+    const totalDocs = allPosts.length
     const totalPages = Math.ceil(totalDocs / pageLimit)
     const pages: { params: { page: string | undefined }, props: { pageLimit: number }}[] = []
 

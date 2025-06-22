@@ -1,6 +1,5 @@
 ---
-import { config as payloadConfig } from 'app-payload'
-import { getPayload, type RequiredDataFromCollectionSlug } from 'payload'
+import { getCollection } from 'astro:content'
 
 import Layout from '../layouts/Layout.astro'
 import { generateMeta } from 'src/utilities/generateMeta'
@@ -9,50 +8,29 @@ import RenderHero from '../components/RenderHero.astro'
 import RenderBlocks from '../components/RenderBlocks.astro'
 
 export async function getStaticPaths() {
-    const payload = await getPayload({ config: payloadConfig })
-    const pages = await payload.find({
-        collection: 'pages',
-        draft: false,
-        limit: 1000,
-        overrideAccess: false,
-        pagination: false,
-        select: {
-            slug: true,
-        }
-    })
+    const allPages = await getCollection('pages')
+    //console.log(JSON.stringify(allPages)) GOOD HERE
     
-    const params = pages.docs?.map(({ slug }) => {
+    const params = allPages.map(({ data: page }) => {
+        //console.log(JSON.stringify(page)) // GOOD HERE
+        const { slug } = page
+        //console.log(JSON.stringify(slug)) GOOD HERE
         if (slug === 'home')
-            return { params: {slug: undefined } }
-        return { params: { slug } }
+            return {
+                params: {slug: undefined },
+                props: { page }
+            }
+        return { 
+            params: { slug },
+            props: { page }
+        }
     })
 
     return params
 }
 
-let page: RequiredDataFromCollectionSlug<'pages'> | null = null
-
-const queryPageBySlug = async ( slug: string ) => {
-    if (page) return page
-    const payload = await getPayload({ config: payloadConfig })
-    const result = await payload.find({
-        collection: 'pages',
-        limit: 1,
-        pagination: false,
-        overrideAccess: false,
-        where: {
-            slug: {
-                equals: slug,
-            },
-        },
-    })
-
-    return result.docs?.[0] || null
-}
-
-const slug: string = Astro.params.slug ?? 'home';
-
-page = await queryPageBySlug( slug )
+const { page } = Astro.props
+//console.log(JSON.stringify(page)) BAD
 
 const { hero, layout } = page
 const {description, openGraph, title} = await generateMeta({doc: page})
