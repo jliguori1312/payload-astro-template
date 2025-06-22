@@ -12,6 +12,7 @@
     "payload-cms"
   ],
   "author": "Jeremy Liguori",
+  "homepage": "https://github.com/jliguori1312/payload-astro-template/tree/main/astro-payload-local-loader",
   "license": "MIT",
   "packageManager": "pnpm@10.7.1",
   "exports": {
