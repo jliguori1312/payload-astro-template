@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content'
+import type { Page } from 'app-payload'
 
 import Layout from '../layouts/Layout.astro'
 import { generateMeta } from 'src/utilities/generateMeta'
@@ -9,19 +10,16 @@ import RenderBlocks from '../components/RenderBlocks.astro'
 
 export async function getStaticPaths() {
     const allPages = await getCollection('pages')
-    //console.log(JSON.stringify(allPages)) GOOD HERE
     
-    const params = allPages.map(({ data: page }) => {
-        //console.log(JSON.stringify(page)) // GOOD HERE
-        const { slug } = page
-        //console.log(JSON.stringify(slug)) GOOD HERE
-        if (slug === 'home')
+    const params = allPages.map(({ data }) => {
+        const page = data as Page
+        if (page.slug === 'home')
             return {
                 params: {slug: undefined },
                 props: { page }
             }
         return { 
-            params: { slug },
+            params: { slug: page.slug },
             props: { page }
         }
     })
@@ -29,7 +27,7 @@ export async function getStaticPaths() {
     return params
 }
 
-const { page } = Astro.props
+const { page } = Astro.props as { page: Page }
 //console.log(JSON.stringify(page)) BAD
 
 const { hero, layout } = page
