@@ -10,7 +10,6 @@
   "license": "MIT",
   "packageManager": "pnpm@10.7.1",
   "exports": {
-    ".": "./src/config.ts",
     "./react/*": "./src/blocks/*/react/index.tsx",
     "./astro/*": "./src/blocks/*/astro/index.astro",
     "./vue/*": "./src/blocks/*/vue/index.vue",
