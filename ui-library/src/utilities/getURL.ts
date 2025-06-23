@@ -2,10 +2,7 @@ import canUseDOM from "./canUseDOM.ts";
 
 export const getServerSideURL = () => {
   
-  if (import.meta.env?.DEV) {
-    return "http://localhost:3000";
-  }
-  let url = import.meta.env?.SITE;
+  let url = process.env.SITE ? process.env.SITE : ''
   
   if (!url && process.env.VERCEL_PROJECT_PRODUCTION_URL) {
     return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
@@ -20,9 +17,6 @@ export const getServerSideURL = () => {
 
 export const getClientSideURL = () => {
  
-  if (import.meta.env.DEV) {
-    return "http://localhost:3000";
-  }
   if (canUseDOM) {
     const protocol = window.location.protocol;
     const domain = window.location.hostname;
@@ -35,5 +29,5 @@ export const getClientSideURL = () => {
     return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
   }
 
-  return process.env.NEXT_PUBLIC_SERVER_URL || "";
+  return "http://localhost:3000"
 };
