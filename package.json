@@ -16,7 +16,8 @@
     "onlyBuiltDependencies": [
       "@parcel/watcher",
       "esbuild",
-      "sharp"
+      "sharp",
+      "workerd"
     ]
   }
 }
