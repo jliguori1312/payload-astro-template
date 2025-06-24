@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  builder:
+    build:
+      context: .
+    command: pnpm build
+    volumes:
+      - shared-dist:/app/dist
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - shared-dist:/usr/share/nginx/html:ro
+    ports:
+      - "80:80"
+    depends_on:
+      - builder
+    restart: always
+
+volumes:
+  shared-dist:
