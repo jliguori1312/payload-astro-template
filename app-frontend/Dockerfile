@@ -5,7 +5,7 @@ WORKDIR /app
 
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
-COPY .. .
+COPY . .
 
 RUN cd app-frontend && pnpm install
 
