@@ -5,8 +5,9 @@ WORKDIR /app
 
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
-COPY . .
+COPY .. .
 
-RUN pnpm install
+RUN cd app-frontend && pnpm install
 
-CMD ["pnpm", "build"]
+ENTRYPOINT ["pnpm", "build"]
+CMD ["--outdir", "/dist"]

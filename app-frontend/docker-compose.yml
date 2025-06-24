@@ -6,7 +6,7 @@ services:
       context: .
     command: pnpm build
     volumes:
-      - shared-dist:/app/dist
+      - shared-dist:/dist
 
   nginx:
     image: nginx:alpine
