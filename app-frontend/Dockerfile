@@ -9,5 +9,5 @@ COPY . .
 
 RUN cd app-frontend && pnpm install
 
-ENTRYPOINT ["pnpm", "build"]
+ENTRYPOINT ["cd app-frontend pnpm", "build"]
 CMD ["--outdir", "/dist"]
