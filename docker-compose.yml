@@ -1,23 +1,47 @@
 
 services:
+
   astro-builder:
     build:
       context: .
       dockerfile: app-frontend/Dockerfile
     volumes:
-      - shared-dist:/app/app-frontend/dist
+      - static-dist:/app/app-frontend/dist
+    depends_on:
+      - mongo
     restart: no
     env_file: app-frontend/.env
 
   frontend-host:
     image: nginx:alpine
     volumes:
-      - shared-dist:/usr/share/nginx/html:ro
+      - static-dist:/usr/share/nginx/html:ro
     ports:
       - "80:80"
     depends_on:
       - astro-builder
     restart: always
 
+  payload:
+    build:
+      context: .
+      dockerfile: app-payload/Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    restart: always
+    env_file: app-payload/.env
+
+  mongo:
+    image: mongo:latest
+    command:
+      - --storageEngine=wiredTiger
+    volumes:
+      - db-data:/data/db
+    logging:
+      driver: none
+
 volumes:
-  shared-dist:
+  static-dist:
+  db-data:

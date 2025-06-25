@@ -1,3 +1,6 @@
+app-frontend
+astro-payload-local-loader
+
 **/node_modules
 **/README.md
 **/dist
