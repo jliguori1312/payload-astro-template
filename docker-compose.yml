@@ -1,21 +1,22 @@
-version: '3.8'
 
 services:
-  builder:
+  astro-builder:
     build:
       context: .
-    command: pnpm build
+      dockerfile: app-frontend/Dockerfile
     volumes:
-      - shared-dist:/dist
+      - shared-dist:/app/app-frontend/dist
+    restart: no
+    env_file: app-frontend/.env
 
-  nginx:
+  frontend-host:
     image: nginx:alpine
     volumes:
       - shared-dist:/usr/share/nginx/html:ro
     ports:
       - "80:80"
     depends_on:
-      - builder
+      - astro-builder
     restart: always
 
 volumes:
