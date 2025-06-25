@@ -30,7 +30,6 @@
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
-
   },
   "dependencies": {
     "@opennextjs/cloudflare": "^1.3.1",
@@ -55,7 +54,7 @@
     "geist": "^1.4.2",
     "graphql": "^16.11.0",
     "lucide-react": "^0.518.0",
-    "next": "^15.3.4",
+    "next": "^15.1.8",
     "next-sitemap": "^4.2.3",
     "payload": "catalog:payload",
     "payload-admin-bar": "^1.0.6",
