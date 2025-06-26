@@ -11,7 +11,7 @@ WORKDIR /app/app-frontend
 
 RUN pnpm install
 ARG PAYLOAD_SECRET
-ARG DATABASE_URI
+ARG DATABASE_URI 
 RUN pnpm build
 
 FROM nginx:alpine
