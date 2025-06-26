@@ -10,6 +10,7 @@ COPY . .
 WORKDIR /app/app-frontend
 
 RUN pnpm install
+ARG PAYLOAD_SECRET
 RUN pnpm build
 
 FROM nginx:alpine
