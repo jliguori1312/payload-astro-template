@@ -20,4 +20,4 @@ COPY --from=builder /app/app-frontend/dist /usr/share/nginx/html
 EXPOSE 80
 
 ENTRYPOINT ["nginx"]
-CMD ["-g", "daemon off"]
+CMD ["-g", "daemon off;"]
