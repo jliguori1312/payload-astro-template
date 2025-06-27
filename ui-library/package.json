@@ -46,12 +46,13 @@
     "tailwindcss": "^4.1.10",
     "tsx": "^4.20.3",
     "typescript": "5.8.3",
-    "vue": "^3.5.17"
+    "vue": "^3.5.17",
+    "payload": "catalog:payload"
   },
   "peerDependencies": {
     "@payloadcms/plugin-form-builder": "catalog:payload",
     "@payloadcms/richtext-lexical": "catalog:payload",
-    "@payloadcms/ui": "^3.37.0",
+    "@payloadcms/ui": "catalog:payload",
     "@radix-ui/react-checkbox": "^1.1.4",
     "@radix-ui/react-label": "^2.1.2",
     "@radix-ui/react-select": "^2.1.6",

@@ -336,9 +336,6 @@ importers:
       class-variance-authority:
         specifier: 0.7.1
         version: 0.7.1
-      payload:
-        specifier: catalog:payload
-        version: 3.43.0(graphql@16.11.0)(typescript@5.8.3)
       payload-admin-bar:
         specifier: ^1.0.7
         version: 1.0.7(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -382,6 +379,9 @@ importers:
       lucide-react:
         specifier: ^0.518.0
         version: 0.518.0(react@19.1.0)
+      payload:
+        specifier: catalog:payload
+        version: 3.43.0(graphql@16.11.0)(typescript@5.8.3)
       prism-react-renderer:
         specifier: ^2.4.1
         version: 2.4.1(react@19.1.0)

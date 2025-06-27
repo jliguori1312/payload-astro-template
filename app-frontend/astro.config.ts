@@ -34,5 +34,5 @@ export default defineConfig({
   redirects: await getRedirects(),
   integrations: [vue(), react()],
 
-  site: "https://your-site-here.com",
+  site: "http://localhost:3000",
 });

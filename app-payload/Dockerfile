@@ -14,7 +14,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm install -g corepack@latest && corepack enable && corepack prepare pnpm@latest --activate && pnpm --filter app-payload i --frozen-lockfile && ls -la .
+RUN npm install -g corepack@latest && corepack enable && corepack prepare pnpm@latest --activate && pnpm -F app-payload -F ui-library i --frozen-lockfile
 
 WORKDIR /app/app-payload
 
@@ -41,7 +41,7 @@ RUN chown nextjs:nodejs .next
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=deps --chown=nextjs:nodejs /app/app-payload/.next/standalone ./
-COPY --from=deps --chown=nextjs:nodejs /app/app-payload/.next/static ./.next/static
+COPY --from=deps --chown=nextjs:nodejs /app/app-payload/.next/static ./app-payload/.next/static
 
 USER nextjs
 
@@ -51,4 +51,4 @@ ENV PORT 3000
 
 # server.js is created by next build from the standalone output
 # https://nextjs.org/docs/pages/api-reference/next-config-js/output
-CMD HOSTNAME="0.0.0.0" node server.js
+CMD HOSTNAME="0.0.0.0" node app-payload/server.js
