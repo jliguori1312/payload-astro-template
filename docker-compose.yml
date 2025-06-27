@@ -30,8 +30,8 @@ services:
     restart: always
     volumes:
       - static-dist:/srv:ro
-      - caddy_data:/data
-      - caddy_config:/config
+      - caddy-data:/data
+      - caddy-config:/config
     environment:
       - SITE_URL=localhost
 
@@ -62,5 +62,5 @@ services:
 volumes:
   static-dist:
   db-data:
-  caddy_data:
-  caddy_config:
+  caddy-data:
+  caddy-config:
