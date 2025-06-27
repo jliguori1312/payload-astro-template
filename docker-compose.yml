@@ -10,7 +10,10 @@ services:
     depends_on:
       - mongo
     restart: no
-    env_file: app-frontend/.env
+    environment:
+      - DATABASE_URI=mongodb://mongo:27017/payload
+      - PAYLOAD_SECRET=SECRET-GOES-HERE
+      - SITE_URL=http://localhost:3000
 
   frontend-host:
     image: nginx:alpine
@@ -31,7 +34,13 @@ services:
     depends_on:
       - mongo
     restart: always
-    env_file: app-payload/.env
+    environment:
+      - DATABASE_URI=mongodb://mongo:27017/payload
+      - PAYLOAD_SECRET=SECRET-GOES-HERE
+      - NEXT_PUBLIC_SERVER_URL=http://localhost:3000
+      - CRON_SECRET=YOUR_CRON_SECRET_HERE
+      - PREVIEW_SECRET=YOUR_SECRET_HERE
+      - SITE_URL=http://localhost:3000
 
   mongo:
     image: mongo:latest
