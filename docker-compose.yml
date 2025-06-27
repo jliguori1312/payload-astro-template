@@ -13,34 +13,42 @@ services:
     environment:
       - DATABASE_URI=mongodb://mongo:27017/payload
       - PAYLOAD_SECRET=SECRET-GOES-HERE
-      - SITE_URL=http://localhost:3000
+      - SITE_URL=https://localhost
 
-  frontend-host:
-    image: nginx:alpine
-    volumes:
-      - static-dist:/usr/share/nginx/html:ro
+  caddy:
+    build:
+      context: .
+      dockerfile_inline: |
+        FROM caddy:2.10-alpine
+        COPY Caddyfile /etc/caddy/Caddyfile
     ports:
       - "80:80"
-    depends_on:
-      - astro-builder
+      - "443:443"
+      - "443:443/udp"
+    cap_add:
+      - NET_ADMIN
     restart: always
+    volumes:
+      - static-dist:/srv:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    environment:
+      - SITE_URL=localhost
 
   payload:
     build:
       context: .
       dockerfile: app-payload/Dockerfile
-    ports:
-      - "3000:3000"
     depends_on:
       - mongo
     restart: always
     environment:
       - DATABASE_URI=mongodb://mongo:27017/payload
       - PAYLOAD_SECRET=SECRET-GOES-HERE
-      - NEXT_PUBLIC_SERVER_URL=http://localhost:3000
+      - NEXT_PUBLIC_SERVER_URL=http://localhost
       - CRON_SECRET=YOUR_CRON_SECRET_HERE
       - PREVIEW_SECRET=YOUR_SECRET_HERE
-      - SITE_URL=http://localhost:3000
+      - SITE_URL=https://localhost
 
   mongo:
     image: mongo:latest
@@ -54,3 +62,5 @@ services:
 volumes:
   static-dist:
   db-data:
+  caddy_data:
+  caddy_config:

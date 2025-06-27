@@ -1,0 +1,17 @@
+{
+}
+
+{$SITE_URL} {
+    root * /srv
+    reverse_proxy /api/* payload:3000
+    handle /admin* {
+        reverse_proxy payload:3000
+    }
+    handle /_next* {
+        reverse_proxy payload:3000
+    }
+    handle /next/* {
+        reverse_proxy payload:3000
+    }
+    file_server
+}
