@@ -31,7 +31,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
 
       - name: Detect changes
         id: filter
