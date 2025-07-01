@@ -38,6 +38,8 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
           reference.value.slug
         }`
       : url
+  console.log('input:', reference)
+
 
   if (!href) return null
 
