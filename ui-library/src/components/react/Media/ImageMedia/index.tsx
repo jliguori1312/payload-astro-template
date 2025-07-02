@@ -1,5 +1,6 @@
 import { cn } from '#util/ui.js'
 import React from 'react'
+import { Image } from '@unpic/react'
 
 import type { Props as MediaProps } from '../types.js'
 
@@ -15,17 +16,20 @@ const placeholderBlur =
 export const ImageMedia: React.FC<MediaProps> = (props) => {
   const {
     alt: altFromProps,
-    fill,
     imgClassName,
     priority,
     resource,
     size: sizeFromProps,
     src: srcFromProps,
     loading: loadingFromProps,
+    operations,
+    options,
+    width: widthFromProps,
+    height: heightFromProps,
   } = props
 
-  let width: number | undefined
-  let height: number | undefined
+  let width = widthFromProps || undefined
+  let height = heightFromProps || undefined
   let alt = altFromProps
   let src = srcFromProps || ''
 
@@ -54,19 +58,20 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
 
   return (
     <picture>
-      <img
+      <Image
         alt={alt || ''}
         className={cn(imgClassName)}
         // fill={fill}
-        height={!fill ? height : undefined}
-        // placeholder="blur"
-        // blurDataURL={placeholderBlur}
-        // priority={priority}
+        height={height}
+        background={placeholderBlur}
+        priority={priority}
         // quality={100}
         loading={loading}
         sizes={sizes}
         src={src}
-        width={!fill ? width : undefined}
+        width={width}
+        operations={operations}
+        options={options}
       />
     </picture>
   )
