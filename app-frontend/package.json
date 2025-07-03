@@ -42,5 +42,8 @@
     "typescript": "5.8.3",
     "ui-library": "workspace:*",
     "vue": "^3.5.17"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.16"
   }
 }
