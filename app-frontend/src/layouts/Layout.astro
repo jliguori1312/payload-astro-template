@@ -23,9 +23,10 @@ interface Props {
   };
   title: string,
   useTransitions: Boolean
+  headerIsDark: Boolean
 }
 
-const { useTransitions, ...metadata } = Astro.props;
+const { useTransitions, headerIsDark, ...metadata } = Astro.props;
 
 // make this cleaner, more dynamic, once we have static params and slugs?
 const { pathname: slug } = Astro.url;
@@ -50,7 +51,7 @@ const isPreview = true; // TODO: get this value from inside componenet, if it st
   </head>
   <body class="bg-background text-foreground min-h-[100vh] flex flex-col">
     <AdminBar path={slug} adminBarProps={{ isPreview }} client:only="react" />
-	<Header />
+	<Header headerIsDark />
     <slot />
 	<Footer />
   </body>

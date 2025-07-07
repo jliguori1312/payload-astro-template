@@ -190,6 +190,7 @@ export interface Page {
         }[]
       | null;
     media?: (string | null) | Media;
+    dark?: boolean | null;
   };
   layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
   meta?: {
@@ -1008,6 +1009,7 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
             };
         media?: T;
+        dark?: T;
       };
   layout?:
     | T
