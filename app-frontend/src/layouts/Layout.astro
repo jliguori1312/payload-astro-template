@@ -51,7 +51,7 @@ const isPreview = true; // TODO: get this value from inside componenet, if it st
   </head>
   <body class="bg-background text-foreground min-h-[100vh] flex flex-col">
     <AdminBar path={slug} adminBarProps={{ isPreview }} client:only="react" />
-	<Header headerIsDark />
+	<Header headerIsDark={headerIsDark} />
     <slot />
 	<Footer />
   </body>
