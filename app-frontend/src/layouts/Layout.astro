@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import { ClientRouter } from 'astro:transitions'
 import { AdminBar } from "ui-library/component/react/AdminBar/index.jsx";
+import { Font } from 'astro:assets'
 
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
@@ -46,6 +47,9 @@ const isPreview = true; // TODO: get this value from inside componenet, if it st
     <meta name="viewport" content="width=device-width" />
 	  <link href={Astro.site} rel="canonical">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <Font cssVariable="--font-geist-sans" preload />
+    <Font cssVariable="--font-geist-mono" preload />
+
 	<!-- TODO: Add favicon and webclip -->
     {useTransitions && <ClientRouter />}
   </head>

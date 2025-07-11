@@ -1,7 +1,7 @@
 // @ts-check
 import "dotenv/config";
 
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import { getRedirects } from "./src/utilities/redirects";
 import { fileURLToPath } from "url";
 
@@ -33,6 +33,20 @@ export default defineConfig({
   },
   redirects: await getRedirects(),
   integrations: [vue(), react()],
+
+  experimental: {
+    fonts: [{
+      provider: fontProviders.google(),
+      name: "Geist",
+      cssVariable: "--font-geist-sans"
+    },
+    {
+      provider: fontProviders.google(),
+      name: "Geist Mono",
+      cssVariable: "--font-geist-mono"
+    }
+  ]
+  },
 
   site: "https://your-site-here.com",
 });
