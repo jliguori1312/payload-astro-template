@@ -85,6 +85,10 @@ export const Posts: CollectionConfig<'posts'> = {
               relationTo: 'media',
             },
             {
+              name: 'dark',
+              type: 'checkbox',
+            },
+            {
               name: 'content',
               type: 'richText',
               editor: lexicalEditor({

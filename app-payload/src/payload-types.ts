@@ -216,6 +216,7 @@ export interface Post {
   id: string;
   title: string;
   heroImage?: (string | null) | Media;
+  dark?: boolean | null;
   content: {
     root: {
       type: string;
@@ -1125,6 +1126,7 @@ export interface FormBlockSelect<T extends boolean = true> {
 export interface PostsSelect<T extends boolean = true> {
   title?: T;
   heroImage?: T;
+  dark?: T;
   content?: T;
   relatedPosts?: T;
   categories?: T;
