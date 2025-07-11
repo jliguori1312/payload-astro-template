@@ -35,6 +35,8 @@ const {description, openGraph, title} = await generateMeta({doc: page})
  ---
 
 <Layout useTransitions={false} description={description} openGraph={openGraph} title={title} headerIsDark={hero.dark ? hero.dark : false}>
-	<RenderHero {...hero} />
-    <RenderBlocks blocks={layout} />
+    <article class="pt-16 pb-24">   
+        <RenderHero {...hero} />
+        <RenderBlocks blocks={layout} />
+    </article>
 </Layout>
