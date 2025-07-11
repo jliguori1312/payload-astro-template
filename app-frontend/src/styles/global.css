@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @source "../../node_modules/ui-library/src";
 @plugin '@tailwindcss/typography';
+@config './tailwind.config.mjs';
 
 :root {
     --background: 0 0% 100%;
