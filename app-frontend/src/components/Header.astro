@@ -6,8 +6,10 @@ import type { Header } from 'app-payload/types'
 import { Logo } from 'ui-library/component/react/Logo/index.tsx'
 
 const { navItems }: Header = await getGlobal('header', 1)
+
+ const { headerIsDark } = Astro.props
 ---
-<header class="container relative z-20" >
+<header class="container relative z-20" data-theme={headerIsDark && 'dark'}>
   <div class="py-8 flex justify-between">
     <a href="/">
       <Logo loading="eager" priority="high" className="invert dark:invert-0" />
