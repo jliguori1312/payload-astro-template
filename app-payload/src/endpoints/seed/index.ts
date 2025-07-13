@@ -353,7 +353,7 @@ export const seed = async ({
               type: 'custom',
               label: 'Source Code',
               newTab: true,
-              url: 'https://github.com/payloadcms/payload/tree/main/templates/website',
+              url: 'https://github.com/jliguori1312/payload-astro-template',
             },
           },
           {
@@ -364,6 +364,14 @@ export const seed = async ({
               url: 'https://payloadcms.com/',
             },
           },
+          {
+            link: {
+              type: 'custom',
+              label: 'Astro',
+              newTab: true,
+              url: 'https://astro.build/',
+            },
+          }
         ],
       },
     }),

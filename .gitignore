@@ -12,3 +12,4 @@ pnpm-debug.log*
 oldSite
 .env
 .open-next
+.aider*

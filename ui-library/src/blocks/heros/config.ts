@@ -67,6 +67,13 @@ export const hero: Field = {
       relationTo: 'media',
       required: true,
     },
+    {
+      name: 'dark',
+      type: 'checkbox',
+      admin: {
+        condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
+      }
+    },
   ],
   label: false,
 }

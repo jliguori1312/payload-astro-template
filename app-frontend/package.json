@@ -22,8 +22,10 @@
     "@tailwindcss/vite": "^4.1.10",
     "@types/react": "catalog:react",
     "@types/react-dom": "catalog:react",
+    "@unpic/react": "^1.0.1",
     "app-payload": "workspace:*",
     "astro": "^5.10.0",
+    "astro-payload-local-loader": "workspace:*",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^16.5.0",
@@ -39,7 +41,9 @@
     "tailwindcss": "^4.1.10",
     "typescript": "5.8.3",
     "ui-library": "workspace:*",
-    "vue": "^3.5.17",
-    "astro-payload-local-loader": "workspace:*"
+    "vue": "^3.5.17"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.16"
   }
 }

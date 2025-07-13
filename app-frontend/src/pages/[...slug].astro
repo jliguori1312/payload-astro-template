@@ -28,14 +28,15 @@ export async function getStaticPaths() {
 }
 
 const { page } = Astro.props as { page: Page }
-//console.log(JSON.stringify(page)) BAD
 
 const { hero, layout } = page
 const {description, openGraph, title} = await generateMeta({doc: page})
 
  ---
 
-<Layout useTransitions={false} description={description} openGraph={openGraph} title={title}>
-	<RenderHero {...hero} />
-    <RenderBlocks blocks={layout} />
+<Layout useTransitions={false} description={description} openGraph={openGraph} title={title} headerIsDark={hero.dark ? hero.dark : false}>
+    <article class="pt-16 pb-24">   
+        <RenderHero {...hero} />
+        <RenderBlocks blocks={layout} />
+    </article>
 </Layout>

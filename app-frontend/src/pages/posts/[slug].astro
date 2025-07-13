@@ -31,7 +31,7 @@ const { description, openGraph, title } = await generateMeta({doc: post})
 
 ---
 
-<Layout useTransitions={false} description={description} openGraph={openGraph} title={title}>
+<Layout useTransitions={false} description={description} openGraph={openGraph} title={title} headerIsDark={post.dark ? post.dark : false}>
     <article class="pt-16 pb-16">
 
         <PostHero post={post} />
