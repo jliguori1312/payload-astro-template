@@ -4,90 +4,88 @@ A one-to-one rebuild of the Payload CMS website template using Astro instead of 
 
 ## Features
 
+- **Frontend Flexibility**: Demonstrates an approach to using a frontend framework other than Next.js, using the local API and Astro.
+- **Payload CMS Integration**: Utilizes Payload as normal, with minimal changes to the Payload configuration.
+- **Design Replication**: The design aims to replicate the official Payload website template as closely as possible, using the exact same react components where possible and the exact same seed data and styling.
 - **Statically Generated**: Built with Astro, this template generates static HTML files at build time, making it fast and efficient.
-- **Payload CMS Integration**: Utilizes Payload CMS for managing content, providing a robust backend solution.
-- **Design Replication**: The design closely follows the original Payload website template, ensuring consistency and familiarity.
-- **Frontend Flexibility**: Demonstrates how to use Astro alongside Payload, showcasing the capabilities of both frameworks.
+
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js (version 14 or higher)
-- pnpm (version 6 or higher)
+- Node.js
+- pnpm (The project depends on pnpm workspaces)
 
 ### Installation
 
-1. Clone the repository:
+1. Clone the repository and install dependencies:
 
    ```bash
    git clone https://github.com/yourusername/payload-astro-template.git
    cd payload-astro-template
-   ```
-
-2. Install dependencies using pnpm:
-
-   ```bash
    pnpm install
    ```
+2. Set up your environment variables:
+    Copy `.env.example` to `.env` in both `app-frontend` and `app-payload`, and add your database connection and other info.
 
-3. Start the development server:
+3. Start the Payload dev server:
 
    ```bash
+   cd app-payload
    pnpm run dev
    ```
+   Navigate to `http://localhost:3000` Create a user, then run the seed script from the link on the dashboard, or add your own content.
 
-4. Open your browser and navigate to `http://localhost:3000` to see the template in action.
+4. Start the Astro dev server:
+    ```bash
+    cd app-frontend
+    pnpm run dev
+    ```
+    Navigate to `http://localhost:4321` and you should see the site with the content you added.
 
-## Project Structure
+## Deployment
+
+You can deploy the frontend anywhere you want as a static site. The backend can be deployed just as you would any other Payload project. As long as the Payload Config file that is provided to the frontend is kept in sync with your Payload deployment (for example by deploying both front and backends from one repo like this one), then during the Astro build the content loader will use the local API to access the database directly without needing your Payload instance at all. The Payload instance exists soley to be used as an Admin panel for editing, to process any forms if you're using them, and to provide images on page load, depending on how you're handling them (see below).
+
+### Images/Media
+
+As is, images are accessed through the Payload /api endpoint on page load. The media component uses a basic implementation of [Unpic](https://unpic.pics/) to replace the website templates use of next/image inside React components. If you're site is not very image heavy, this is probably fine as is. If it is though, unpic supports most image provider services, and by providing the image URL to Unpic through the Payload collection it will automatically request what it needs to create a responsive image element.
+
+## Project Structure and Notes
 
 - **app-frontend/**: Contains the frontend code built with Astro.
-  - **src/**: Source files for the frontend application.
-    - **styles/**: CSS and styling configurations.
-    - **utilities/**: Utility functions and helpers.
-- **app-payload/**: Payload CMS configuration and backend setup.
-  - **src/**: Source files for Payload CMS.
-    - **access/**: Authentication and access control logic.
-    - **app/**: Application routes and components.
-    - **endpoints/**: Custom API endpoints.
-    - **fields/**: Custom field types.
-    - **providers/**: Context providers for theme management.
-    - **utilities/**: Utility functions and helpers.
-- **astro-payload-local-loader/**: Astro loader configuration for Payload CMS integration.
-  - **.astro/content.d.ts**: TypeScript definitions for content entries.
-  - **payload-local-loader.ts**: Loader script for integrating Payload with Astro.
-- **ui-library/**: UI components and blocks used in the template.
-  - **blocks/**: Reusable content blocks.
-  - **components/**: Individual UI components.
-  - **fields/**: Custom field types for forms.
+  - **src/pages, components, layouts**: These Astro files match the logic of the website template Next routes. As with those, you don't need to change anything here if you don't want to.
+  - **src/utilities/**: Frontend specific utility functions.
+  - **src/styles/**: The project uses Tailwind v4, and you can customize the theme in `global.css`. `tailwind.config.mjs` is used to configure the typeography plugin. All styles match the website template.
+  - **src/content.config.ts**: This file sets up your collections in Astro, allowing them to be cached and only update changed documents on build. You'll need to update this file if you add any collections to Payload. See: https://docs.astro.build/en/guides/content-collections/.
+  - **astro.config.ts**: Make sure to update the site key to your production domain before deployment.
+- **app-payload/**: Payload CMS configuration and backend setup. Very little is changed from the official website template. 
+- **astro-payload-local-loader/**: Custom Astro content loader for using the Payload local API.
+- **ui-library/src**: Payload blocks, configs, and all other shared components and utilities.
+  - **blocks/**: Reusable content blocks. This is where you can edit your available blocks for the page builder.
+  - **components/**: Individual UI components, used by blocks and directly by Payload.
+  - **fields/**: Custom field types for blocks and components as well as Payload.
   - **utilities/**: Utility functions and helpers.
 
-## Notes
+## Limitations and Differences from the Website Template
 
-- **pnpm Workspace**: This project uses pnpm with a workspace setup. Ensure you have pnpm installed to manage dependencies effectively.
-- **Circular Dependencies**: Circular dependency warnings may appear, but the `ui-library` package only imports types from `app-payload`, so it is not a problem.
-- **Live Preview**: Due to static generation, live preview is not available. Draft mode can be configured based on your deployment strategy.
-- **Publish Button**: The publish button in the admin panel currently only saves changes and sets the document to draft: false so that it's included when the frontend is built. A deploy/publish button needs to be implemented, which would likely trigger a rebuild of the frontend via webhook to platforms like Cloudflare, Vercel, or Netlify.
+- **Circular Dependencies**: Circular dependency warnings may appear between `app-payload` and `ui-library`. `ui-library` only imports types from `app-payload` so that the blocks can be typesafe, but pnpm will warn you anyway.
+- **Publish Button**: The publish button in the admin panel currently only sets the document to `draft: false`, as it does in the website template. You then need to manually rebuild the frontend. Depending on your deployment, you'd likely want to add a button to the admin panel that triggers a build by webhook or something similar. (I will likely add a button with a webhook placeholder).
+- **Live Preview**: Due to static generation, there is no way to make live preview work. You could implement it using SSR in Astro, but you'd tradeoff the SSG benefits.
+- **Draft Mode**: This could be implemented with a draft/staging branch, that has the astro content configuration set to `draft:true`, and using a button as above to trigger a draft deployment on a subdomain. This would depend on your deployment setup.
+
 
 ## Contributing
 
-Contributions are welcome! Please follow these guidelines:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Make your changes and commit them with descriptive messages.
-4. Push your changes to your forked repository.
-5. Submit a pull request to the main repository.
+If you have any features, improvements, fixes, etc. you'd like to add contributions are more than welcome!
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
 ## Acknowledgments
 
 - **Payload CMS**: For providing an excellent content management system.
 - **Astro Framework**: For enabling static site generation with modern frontend capabilities.
 
----
-
-Feel free to customize this template further to suit your specific needs and contribute back to the community!

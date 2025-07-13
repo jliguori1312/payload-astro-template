@@ -11,3 +11,4 @@ pnpm-debug.log*
 
 oldSite
 .env
+.aider*
