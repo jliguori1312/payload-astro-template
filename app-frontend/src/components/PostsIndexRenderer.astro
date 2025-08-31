@@ -1,0 +1,35 @@
+---
+import CollectionArchive from 'ui-library/component/astro/CollectionArchive.astro'
+import { PageRange } from 'ui-library/component/react/PageRange/index.tsx'
+import { Pagination } from 'ui-library/component/react/Pagination/index.tsx'
+import Layout from 'src/layouts/Layout.astro'
+
+const { posts, pageLimit, title, description, openGraph } = Astro.props
+---
+
+<Layout useTransitions={true} {description} {openGraph} {title}>
+  <div class="pt-24 pb-24">
+    <div class="container mb-16">
+      <div class="prose dark:prose-invert max-w-none">
+        <h1>Posts</h1>
+      </div>
+    </div>
+
+    <div class="container mb-8">
+      <PageRange
+        collection="posts"
+        currentPage={posts.page}
+        limit={pageLimit}
+        totalDocs={posts.totalDocs}
+      />
+    </div>
+
+    <CollectionArchive posts={posts.docs} />
+
+    <div class="container">
+      {posts.totalPages > 1 && posts.page && (
+        <Pagination client:load page={posts.page} totalPages={posts.totalPages} />
+      )}
+    </div>
+  </div>
+</Layout>

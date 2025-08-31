@@ -1,0 +1,25 @@
+---
+import type { Page } from 'app-payload'
+import Layout from '../layouts/Layout.astro'
+import { generateMeta } from 'src/utilities/generateMeta'
+import RenderHero from './RenderHero.astro'
+import RenderBlocks from './RenderBlocks.astro'
+
+const { page } = Astro.props as { page: Page }
+
+const { hero, layout } = page
+const { description, openGraph, title } = await generateMeta({ doc: page })
+---
+
+<Layout
+  useTransitions={false}
+  description={description}
+  openGraph={openGraph}
+  title={title}
+  headerIsDark={hero.dark ? hero.dark : false}
+>
+  <article class="pt-16 pb-24">
+    <RenderHero {...hero} />
+    <RenderBlocks blocks={layout} />
+  </article>
+</Layout>

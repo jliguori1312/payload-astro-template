@@ -1,94 +1,39 @@
 ---
-import CollectionArchive from 'ui-library/component/astro/CollectionArchive.astro'
-import { PageRange } from 'ui-library/component/react/PageRange/index.tsx'
-import { Pagination } from 'ui-library/component/react/Pagination/index.tsx'
-import type { InferGetStaticParamsType, InferGetStaticPropsType, GetStaticPaths } from 'astro'
-import { config as payloadConfig } from 'app-payload'
-import { getPayload } from 'payload'
+import type { InferGetStaticParamsType, InferGetStaticPropsType, GetStaticPaths } from 'astro';
+import { config as payloadConfig } from 'app-payload';
+import { getPayload } from 'payload';
+import { getPostsIndexStaticPaths } from '../../data/posts';
+import PostsIndexRenderer from '../../components/PostsIndexRenderer.astro';
 
-import Layout from 'src/layouts/Layout.astro'
-import { getCollection } from 'astro:content'
+export const getStaticPaths = getPostsIndexStaticPaths satisfies GetStaticPaths;
 
+type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
+const { page: pageSlug } = Astro.params as Params;
+const { pageLimit } = Astro.props as Props;
 
+const sanitizedPageNumber = pageSlug ? Number(pageSlug?.split('/').pop()) : 1;
 
-export const getStaticPaths = (async () => {
-    const pageLimit = 10
-    const allPosts = await getCollection('posts')
-    const totalDocs = allPosts.length
-    const totalPages = Math.ceil(totalDocs / pageLimit)
-    const pages: { params: { page: string | undefined }, props: { pageLimit: number }}[] = []
-
-    for (let i = 1; i <= totalPages; i++) {
-        pages.push({
-            params: { page: `page/${String(i)}` },
-            props: { pageLimit }
-        })
-    }
-    pages.push({
-            params: { page: undefined },
-            props: { pageLimit }
-        })
-    return pages
-}) satisfies GetStaticPaths
-
-
-
-type Params = InferGetStaticParamsType<typeof getStaticPaths>
-type Props = InferGetStaticPropsType<typeof getStaticPaths>
-
-const { page: pageSlug } = Astro.params as Params
-const { pageLimit } = Astro.props as Props
-
-const sanitizedPageNumber = pageSlug 
-    ? Number(pageSlug?.split('/').pop()) 
-    : 1
-
-const payload = await getPayload({ config: payloadConfig})
+const payload = await getPayload({ config: payloadConfig });
 
 const posts = await payload.find({
-    collection: 'posts',
-    depth: 1,
-    limit: pageLimit,
-    overrideAccess: false,
-    page: sanitizedPageNumber,
-    select: {
-        title: true,
-        slug: true,
-        categories: true,
-        meta: true,
-    },
-})
+  collection: 'posts',
+  depth: 1,
+  limit: pageLimit,
+  overrideAccess: false,
+  page: sanitizedPageNumber,
+  select: {
+    title: true,
+    slug: true,
+    categories: true,
+    meta: true,
+  },
+});
 
-
-const title = 'Payload Astro Website Template - Posts'
-const description = 'All posts in the Payload Astro template.'
-const openGraph = {description, title,}
+const title = 'Payload Astro Website Template - Posts';
+const description = 'All posts in the Payload Astro template.';
+const openGraph = { description, title };
 ---
 
-<Layout useTransitions={true} description={description} openGraph={openGraph} title={title}>
-    <div class="pt-24 pb-24">
-        <div class="container mb-16">
-            <div class="prose dark:prose-invert max-w-none">
-                <h1>Posts</h1>
-            </div>
-        </div>
-
-        <div class="container mb-8">
-            <PageRange 
-                collection="posts"
-                currentPage={posts.page}
-                limit={pageLimit}
-                totalDocs={posts.totalDocs}
-            />
-        </div>
-
-        <CollectionArchive posts={posts.docs} />
-
-        <div class="container">
-            {posts.totalPages > 1 && posts.page && (
-                <Pagination client:load page={posts.page} totalPages={posts.totalPages} />
-            )}
-        </div>
-    </div>
-</Layout>
+<PostsIndexRenderer {posts} {pageLimit} {title} {description} {openGraph} />

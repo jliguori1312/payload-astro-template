@@ -1,52 +1,14 @@
 ---
-import type { InferGetStaticPropsType, GetStaticPaths } from 'astro'
-import type { Post } from 'app-payload'
+import type { InferGetStaticPropsType } from 'astro';
+import type { Post } from 'app-payload';
+import { getPostsStaticPaths } from '../../data/posts';
+import PostRenderer from '../../components/PostRenderer.astro';
 
-import Layout from 'src/layouts/Layout.astro'
-import { generateMeta } from 'src/utilities/generateMeta'
-import { RelatedPosts } from 'ui-library/react/RelatedPosts'
-import RichText from 'ui-library/component/react/RichText/index.tsx'
+export const getStaticPaths = getPostsStaticPaths;
 
-import { PostHero } from 'ui-library/react/heros/PostHero'
-import { getCollection } from 'astro:content'
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-export const getStaticPaths = (async () => {
-    const allPosts = await getCollection('posts')
-    
-    const params = allPosts.map(({ data }) => {
-        const post = data as Post
-        return {
-            params: { slug: post.slug },
-            props: { post }
-        }
-    })
-
-    return params
-})
-
-type Props = InferGetStaticPropsType<typeof getStaticPaths>
-
-const { post } = Astro.props as { post: Post }
-const { description, openGraph, title } = await generateMeta({doc: post})
-
+const { post } = Astro.props as { post: Post };
 ---
 
-<Layout useTransitions={false} description={description} openGraph={openGraph} title={title} headerIsDark={post.dark ? post.dark : false}>
-    <article class="pt-16 pb-16">
-
-        <PostHero post={post} />
-
-        <div class="flex flex-col items-center gap-4 pt-8">
-            <div class="container">
-                <RichText className='max-w-[48rem] mx-auto' data={post.content} enableGutter={false} />
-                {post.relatedPosts && post.relatedPosts.length > 0 && (
-                    <RelatedPosts
-                    className='mt-12 max-w-[52rem] lg:grid lg:grid-cols-subgrid col-start-1 col-span-3 grid-rows-[2fr]'
-                    docs={post.relatedPosts.filter((post) => typeof post === 'object')}
-                    client:load
-                    />
-                )}
-            </div>
-        </div>
-    </article>
-</Layout>
+<PostRenderer {post} />

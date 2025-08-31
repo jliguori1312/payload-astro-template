@@ -1,42 +1,11 @@
 ---
-import { getCollection } from 'astro:content'
-import type { Page } from 'app-payload'
+import type { Page } from 'app-payload';
+import { getPagesStaticPaths } from '../data/pages';
+import PageRenderer from '../components/PageRenderer.astro';
 
-import Layout from '../layouts/Layout.astro'
-import { generateMeta } from 'src/utilities/generateMeta'
+export const getStaticPaths = getPagesStaticPaths;
 
-import RenderHero from '../components/RenderHero.astro'
-import RenderBlocks from '../components/RenderBlocks.astro'
+const { page } = Astro.props as { page: Page };
+---
 
-export async function getStaticPaths() {
-    const allPages = await getCollection('pages')
-    
-    const params = allPages.map(({ data }) => {
-        const page = data as Page
-        if (page.slug === 'home')
-            return {
-                params: {slug: undefined },
-                props: { page }
-            }
-        return { 
-            params: { slug: page.slug },
-            props: { page }
-        }
-    })
-
-    return params
-}
-
-const { page } = Astro.props as { page: Page }
-
-const { hero, layout } = page
-const {description, openGraph, title} = await generateMeta({doc: page})
-
- ---
-
-<Layout useTransitions={false} description={description} openGraph={openGraph} title={title} headerIsDark={hero.dark ? hero.dark : false}>
-    <article class="pt-16 pb-24">   
-        <RenderHero {...hero} />
-        <RenderBlocks blocks={layout} />
-    </article>
-</Layout>
+<PageRenderer {page} />
