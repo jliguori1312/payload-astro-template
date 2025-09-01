@@ -1,0 +1,26 @@
+---
+import { isDocumentEvent, ready } from '@payloadcms/live-preview'
+
+export interface Props {
+  serverURL: string
+}
+
+const { serverURL } = Astro.props
+---
+
+<script define:vars={{ serverURL }}>
+  // Listen for messages from the parent window
+  window.addEventListener('message', e => {
+    // Check to see if the event is a "document" event
+    // This is a save, autosave, or publish event
+    if (isDocumentEvent(e, serverURL)) {
+      // If it is, refresh the page
+      window.location.reload()
+    }
+  })
+
+  // Tell the parent window that the iframe is ready
+  ready({
+    serverURL,
+  })
+</script>
