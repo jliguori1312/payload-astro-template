@@ -3,8 +3,34 @@ import type { Page } from 'app-payload';
 import { getPayload } from 'payload'
 import { config as payloadConfig } from 'app-payload'
 import PageRenderer from '../../components/PageRenderer.astro';
+import LivePreviewListener from '../../components/LivePreviewListener.astro';
 
 export const prerender = false
+
+// Authenticate the user
+const token = Astro.cookies.get('payload-token')?.value;
+let user = null;
+
+if (token) {
+  try {
+    const response = await fetch(`${import.meta.env.NEXT_PUBLIC_SERVER_URL}/api/users/me`, {
+      headers: {
+        Authorization: `JWT ${token}`,
+      },
+    });
+    if (response.ok) {
+      user = await response.json();
+    }
+  } catch (e) {
+    console.error('Error fetching user in preview route:', e);
+  }
+}
+
+if (!user) {
+  return new Response('You must be logged in to view draft content. Please log in to the Payload admin panel and try again.', {
+    status: 401,
+  });
+}
 
 const { slug } = Astro.params;
 
@@ -31,3 +57,4 @@ if (!page) {
 ---
 
 <PageRenderer {page} />
+<LivePreviewListener />
