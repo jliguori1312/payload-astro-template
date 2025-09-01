@@ -37,17 +37,17 @@
     "@types/react-dom": "catalog:react",
     "@unpic/react": "^1.0.1",
     "app-payload": "workspace:*",
-    "astro": "^5.13.2",
+    "astro": "^5.13.5",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.539.0",
+    "lucide-react": "^0.542.0",
     "prism-react-renderer": "^2.4.1",
     "react": "catalog:react",
     "react-hook-form": "7.62.0",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.12",
-    "tsx": "^4.20.4",
+    "tsx": "^4.20.5",
     "typescript": "5.9.2",
-    "vue": "^3.5.18"
+    "vue": "^3.5.20"
   },
   "peerDependencies": {
     "@payloadcms/plugin-form-builder": "catalog:payload",
