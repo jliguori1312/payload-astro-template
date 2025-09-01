@@ -41,7 +41,7 @@
     "clsx": "^2.1.1",
     "lucide-react": "^0.539.0",
     "prism-react-renderer": "^2.4.1",
-    "react": "^19.1.1",
+    "react": "catalog:react",
     "react-hook-form": "7.62.0",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.12",
