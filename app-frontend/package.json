@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
+    "@astrojs/node": "^9.4.3",
     "@astrojs/react": "^4.3.0",
     "@astrojs/vue": "^5.1.0",
     "@opentelemetry/api": "^1.9.0",

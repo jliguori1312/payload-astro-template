@@ -1,0 +1,34 @@
+---
+import type { Post } from 'app-payload';
+import { getPayload } from 'payload'
+import { config as payloadConfig } from 'app-payload'
+import PostRenderer from '../../../components/PostRenderer.astro';
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+
+if (!slug) {
+  return Astro.redirect('/404');
+}
+
+  const payload = await getPayload({ config: payloadConfig })
+  const result = await payload.find({
+    collection: 'posts',
+    where: {
+      slug: {
+        equals: slug,
+      },
+    },
+    depth: 2,
+    draft: true,
+  });
+
+  const post: Post = result.docs[0]
+
+if (!post) {
+  return Astro.redirect('/404');
+}
+---
+
+<PostRenderer {post} />

@@ -4,7 +4,11 @@ import { PageRange } from 'ui-library/component/react/PageRange/index.tsx'
 import { Pagination } from 'ui-library/component/react/Pagination/index.tsx'
 import Layout from 'src/layouts/Layout.astro'
 
-const { posts, pageLimit, title, description, openGraph } = Astro.props
+const { posts, pageLimit } = Astro.props
+
+const title = 'Payload Astro Website Template - Posts';
+const description = 'All posts in the Payload Astro template.';
+const openGraph = { description, title };
 ---
 
 <Layout useTransitions={true} {description} {openGraph} {title}>

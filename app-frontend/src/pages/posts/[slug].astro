@@ -1,10 +1,20 @@
 ---
 import type { InferGetStaticPropsType } from 'astro';
 import type { Post } from 'app-payload';
-import { getPostsStaticPaths } from '../../data/posts';
+import { getCollection } from 'astro:content';
 import PostRenderer from '../../components/PostRenderer.astro';
 
-export const getStaticPaths = getPostsStaticPaths;
+export async function getStaticPaths() {
+  const allPosts = await getCollection('posts');
+
+  return allPosts.map(({ data }) => {
+    const post = data as Post;
+    return {
+      params: { slug: post.slug },
+      props: { post },
+    };
+  });
+}
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
