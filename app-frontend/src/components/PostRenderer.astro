@@ -1,0 +1,36 @@
+---
+import type { Post } from 'app-payload'
+import Layout from 'src/layouts/Layout.astro'
+import { generateMeta } from 'src/utilities/generateMeta'
+import { RelatedPosts } from 'ui-library/react/RelatedPosts'
+import RichText from 'ui-library/component/react/RichText/index.tsx'
+import { PostHero } from 'ui-library/react/heros/PostHero'
+
+const { post } = Astro.props as { post: Post }
+const { description, openGraph, title } = await generateMeta({ doc: post })
+---
+
+<Layout
+  useTransitions={false}
+  description={description}
+  openGraph={openGraph}
+  title={title}
+  headerIsDark={post.dark ? post.dark : false}
+>
+  <article class="pt-16 pb-16">
+    <PostHero post={post} />
+
+    <div class="flex flex-col items-center gap-4 pt-8">
+      <div class="container">
+        <RichText class="max-w-[48rem] mx-auto" data={post.content} enableGutter={false} />
+        {post.relatedPosts && post.relatedPosts.length > 0 && (
+          <RelatedPosts
+            className="mt-12 max-w-[52rem] lg:grid lg:grid-cols-subgrid col-start-1 col-span-3 grid-rows-[2fr]"
+            docs={post.relatedPosts.filter(post => typeof post === 'object')}
+            client:load
+          />
+        )}
+      </div>
+    </div>
+  </article>
+</Layout>

@@ -21,7 +21,7 @@ export const VideoMedia: React.FC<MediaProps> = (props) => {
         onClick={onClick}
         playsInline
       >
-        <source src={`${getServerSideURL(import.meta.env)}/media/${filename}`} />
+        <source src={`${getServerSideURL({type: 'frontend'})}/media/${filename}`} />
       </video>
     )
   }

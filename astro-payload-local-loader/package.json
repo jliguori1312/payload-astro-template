@@ -25,10 +25,10 @@
     "tsconfig.json"
   ],
   "devDependencies": {
-    "@types/node": "24.0.3",
-    "astro": "^5.10.0",
-    "payload": "^3.43.0",
-    "typescript": "5.8.3",
+    "@types/node": "24.3.0",
+    "astro": "^5.13.5",
+    "payload": "^3.54.0",
+    "typescript": "5.9.2",
     "zod": "^3.25.67"
   },
   "peerDependencies": {

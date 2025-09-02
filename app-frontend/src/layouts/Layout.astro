@@ -32,7 +32,7 @@ const { useTransitions, headerIsDark, ...metadata } = Astro.props;
 // make this cleaner, more dynamic, once we have static params and slugs?
 const { pathname: slug } = Astro.url;
 
-const isPreview = true; // TODO: get this value from inside componenet, if it stays here it will never change due to SSG
+const isPreview = Astro.url.pathname.startsWith('/preview');
 ---
 
 <!doctype html>

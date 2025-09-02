@@ -1,0 +1,60 @@
+---
+import type { Page } from 'app-payload';
+import { getPayload } from 'payload'
+import { config as payloadConfig } from 'app-payload'
+import PageRenderer from '../../components/PageRenderer.astro';
+import LivePreviewListener from '../../components/LivePreviewListener.astro';
+
+export const prerender = false
+
+// Authenticate the user
+const token = Astro.cookies.get('payload-token')?.value;
+let user = null;
+
+if (token) {
+  try {
+    const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_BASE_URL}/api/users/me`, {
+      headers: {
+        Authorization: `JWT ${token}`,
+      },
+    });
+    if (response.ok) {
+      user = await response.json();
+    }
+  } catch (e) {
+    console.error('Error fetching user in preview route:', e);
+  }
+}
+
+if (!user) {
+  return new Response('You must be logged in to view draft content. Please log in to the Payload admin panel and try again.', {
+    status: 401,
+  });
+}
+
+const { slug } = Astro.params;
+
+// The home page slug is `undefined`, so we map it to 'home' for the API
+
+  const payload = await getPayload({ config: payloadConfig })
+  const result = await payload.find({
+    collection: 'pages',
+    where: {
+      slug: {
+        equals: slug || 'home',
+      },
+    },
+    depth: 2,
+    draft: true,
+  });
+
+  const page: Page = result.docs[0]
+
+// Handle 404
+if (!page) {
+  return Astro.redirect('/404');
+}
+---
+
+<PageRenderer {page} />
+<LivePreviewListener />

@@ -1,0 +1,30 @@
+---
+import { getPayload } from 'payload'
+import { config as payloadConfig } from 'app-payload'
+import PostsIndexRenderer from '../../../components/PostsIndexRenderer.astro';
+
+export const prerender = false;
+
+const pageLimit = 10;
+const { page: pageSlug } = Astro.params;
+
+const sanitizedPageNumber = pageSlug ? Number(pageSlug?.split('/').pop()) : 1;
+  const payload = await getPayload({ config: payloadConfig })
+
+  const posts = await payload.find({
+    collection: 'posts',
+    depth: 2,
+    limit: pageLimit,
+    overrideAccess: false,
+    page: sanitizedPageNumber,
+    draft: false,
+    select: {
+      title: true,
+      slug: true,
+      categories: true,
+      meta: true,
+    },
+  });
+---
+
+<PostsIndexRenderer {posts} {pageLimit} />

@@ -1,25 +1,22 @@
-import { PayloadRequest, CollectionSlug } from 'payload'
+import type { CollectionSlug } from 'payload'
 
-const collectionPrefixMap: Partial<Record<CollectionSlug, string>> = {
-  posts: '/posts',
-  pages: '',
-}
+// This utility is used by the `livePreview` and `preview` functions
+// in collection and global configs to generate a path to the frontend.
 
 type Props = {
-  collection: keyof typeof collectionPrefixMap
+  collection?: CollectionSlug
   slug: string
-  req: PayloadRequest
 }
 
-export const generatePreviewPath = ({ collection, slug }: Props) => {
-  const encodedParams = new URLSearchParams({
-    slug,
-    collection,
-    path: `${collectionPrefixMap[collection]}/${slug}`,
-    previewSecret: process.env.PREVIEW_SECRET || '',
-  })
+export const generatePreviewPath = ({ slug, collection }: Props): string => {
+  if (collection === 'pages') {
+    if (slug === 'home') {
+      return '/preview'
+    }
+    return `/preview/${slug}`
+  }
 
-  const url = `/next/preview?${encodedParams.toString()}`
+  return `/preview/${collection}/${slug}`
 
-  return url
+  
 }

@@ -10,10 +10,13 @@ import vue from "@astrojs/vue";
 import react from "@astrojs/react";
 import path from "path";
 
+import node from "@astrojs/node";
+
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 // https://astro.build/config
 export default defineConfig({
+  output: 'static',
   vite: {
     plugins: [tailwindcss()],
     resolve: {
@@ -31,6 +34,7 @@ export default defineConfig({
       noExternal: ["@payloadcms/ui"],
     },
   },
+
   redirects: await getRedirects(),
   integrations: [vue(), react()],
 
@@ -48,5 +52,9 @@ export default defineConfig({
   ]
   },
 
-  site: "http://localhost:3000",
+  site: "https://your-site-here.com",
+
+  adapter: node({
+    mode: "standalone",
+  }),
 });
