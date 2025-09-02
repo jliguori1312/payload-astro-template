@@ -40,9 +40,10 @@ export const Pages: CollectionConfig<'pages'> = {
     defaultColumns: ['title', 'slug', 'updatedAt'],
     livePreview: {
       url: ({ data }) => {
-        const frontendURL = process.env.PUBLIC_FRONTEND_URL || 'http://localhost:4321'
+        const frontendURL = process.env.PUBLIC_FRONTEND_BASE_URL || 'http://localhost:4321'
 
         const path = generatePreviewPath({
+          collection: 'pages',
           slug: typeof data?.slug === 'string' ? data.slug : '',
         })
 

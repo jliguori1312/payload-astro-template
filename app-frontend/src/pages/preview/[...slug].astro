@@ -13,7 +13,7 @@ let user = null;
 
 if (token) {
   try {
-    const response = await fetch(`${import.meta.env.NEXT_PUBLIC_SERVER_URL}/api/users/me`, {
+    const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_BASE_URL}/api/users/me`, {
       headers: {
         Authorization: `JWT ${token}`,
       },

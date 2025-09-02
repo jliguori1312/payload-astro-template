@@ -69,7 +69,7 @@ export const AdminBar: React.FC<{
               logo: "text-white",
               user: "text-white",
             }}
-            cmsURL={getClientSideURL()}
+            cmsURL={getClientSideURL({type: 'backend'})}
             collection={collection}
             collectionLabels={{
               plural: collectionLabels[collection]?.plural || "Pages",
@@ -92,7 +92,7 @@ export const AdminBar: React.FC<{
               zIndex: "unset",
             }}
           />
-          {!adminBarProps?.preview && (
+          {!adminBarProps?.isPreview && (
             <a href={`/preview${path === '/' ? '' : path}`} className="font-medium text-white hover:underline">
               View Draft
             </a>

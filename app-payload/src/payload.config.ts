@@ -63,7 +63,7 @@ export default buildConfig({
     url: process.env.DEV_DATABASE_URI || process.env.DATABASE_URI || '',
   }),
   collections: [Pages, Posts, Media, Categories, Users],
-  cors: [getServerSideURL(process.env), 'http://localhost:4321'].filter(Boolean),
+  cors: [process.env.PUBLIC_FRONTEND_BASE_URL as string, 'http://localhost:4321'].filter(Boolean),
   globals: [Header, Footer],
   plugins: [
     ...plugins,

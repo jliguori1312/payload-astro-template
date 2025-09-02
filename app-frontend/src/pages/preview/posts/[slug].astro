@@ -3,6 +3,7 @@ import type { Post } from 'app-payload';
 import { getPayload } from 'payload'
 import { config as payloadConfig } from 'app-payload'
 import PostRenderer from '../../../components/PostRenderer.astro';
+import LivePreviewListener from 'src/components/LivePreviewListener.astro';
 
 export const prerender = false;
 
@@ -32,3 +33,4 @@ if (!post) {
 ---
 
 <PostRenderer {post} />
+<LivePreviewListener />

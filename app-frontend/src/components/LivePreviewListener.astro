@@ -1,14 +1,7 @@
 <script>
   import { isDocumentEvent, ready } from '@payloadcms/live-preview';
 
-  const serverURL = import.meta.env.PAYLOAD_PUBLIC_SERVER_URL;
-
-  console.log('Live Preview Listener attached. Server URL:', serverURL);
-
-  // Tell the Payload admin panel that the page is ready to receive messages
-  ready({
-    serverURL: serverURL,
-  });
+  const serverURL = import.meta.env.PUBLIC_BACKEND_BASE_URL
 
   const onMessage = (event) => {
     // Log all incoming messages for debugging
@@ -29,7 +22,4 @@
 
   // Add the event listener when the component mounts
   window.addEventListener('message', onMessage);
-
-  // Astro doesn't have a built-in unmount hook for this type of script,
-  // but for a page refresh strategy, it's not critical to remove the listener.
 </script>

@@ -8,10 +8,15 @@ type Props = {
   slug: string
 }
 
-export const generatePreviewPath = ({ slug }: Props): string => {
-  if (slug === 'home') {
-    return '/preview'
+export const generatePreviewPath = ({ slug, collection }: Props): string => {
+  if (collection === 'pages') {
+    if (slug === 'home') {
+      return '/preview'
+    }
+    return `/preview/${slug}`
   }
 
-  return `/preview/${slug}`
+  return `/preview/${collection}/${slug}`
+
+  
 }
