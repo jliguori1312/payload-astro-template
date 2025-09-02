@@ -56,6 +56,7 @@ As is, images are accessed through the Payload /api endpoint on page load. The m
 
 - **app-frontend/**: Contains the frontend code built with Astro.
   - **src/pages, components, layouts**: These Astro files match the logic of the website template Next routes. As with those, you don't need to change anything here if you don't want to.
+  - **src/pages/preview**: This route duplicates the functionality of the main routes, but is SSR and pulls in draft content from payload. It also includes a live preview component that enables live preview in the payload editor.
   - **src/utilities/**: Frontend specific utility functions.
   - **src/styles/**: The project uses Tailwind v4, and you can customize the theme in `global.css`. `tailwind.config.mjs` is used to configure the typeography plugin. All styles match the website template.
   - **src/content.config.ts**: This file sets up your collections in Astro, allowing them to be cached and only update changed documents on build. You'll need to update this file if you add any collections to Payload. See: https://docs.astro.build/en/guides/content-collections/.
@@ -72,8 +73,8 @@ As is, images are accessed through the Payload /api endpoint on page load. The m
 
 - **Circular Dependencies**: Circular dependency warnings may appear between `app-payload` and `ui-library`. `ui-library` only imports types from `app-payload` so that the blocks can be typesafe, but pnpm will warn you anyway.
 - **Publish Button**: The publish button in the admin panel currently only sets the document to `draft: false`, as it does in the website template. You then need to manually rebuild the frontend. Depending on your deployment, you'd likely want to add a button to the admin panel that triggers a build by webhook or something similar. (I will likely add a button with a webhook placeholder).
-- **Live Preview**: Due to static generation, there is no way to make live preview work. You could implement it using SSR in Astro, but you'd tradeoff the SSG benefits.
-- **Draft Mode**: This could be implemented with a draft/staging branch, that has the astro content configuration set to `draft:true`, and using a button as above to trigger a draft deployment on a subdomain. This would depend on your deployment setup.
+- **Live Preview**: Live Preview is implemented with a server rendered route at /preview, and some client side js that reloads the page when changes are detected from payload.
+- **Draft Mode**: Draft content can be viewed at the /preview route. The user must be logged in with payload in order to access it. Currently, all links will redirect the user back to the published site.
 
 
 ## Contributing
@@ -86,6 +87,6 @@ This project is licensed under the MIT License.
 
 ## Acknowledgments
 
-- **Payload CMS**: For providing an excellent content management system.
-- **Astro Framework**: For enabling static site generation with modern frontend capabilities.
+- **Payload**: For providing an excellent CMS and application framework.
+- **Astro**: For enabling static site generation with modern frontend capabilities.
 
