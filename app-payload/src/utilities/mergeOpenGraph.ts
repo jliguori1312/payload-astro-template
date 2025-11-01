@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
-import { getServerSideURL } from 'ui-library/utilities/getURL'
+import { getServerSideURL } from '@/utilities/getURL'
 
 const defaultOpenGraph: Metadata['openGraph'] = {
   type: 'website',
   description: 'An open-source website built with Payload and Next.js.',
   images: [
     {
-      url: `${getServerSideURL(process.env)}/website-template-OG.webp`,
+      url: `${getServerSideURL()}/website-template-OG.webp`,
     },
   ],
   siteName: 'Payload Website Template',
