@@ -6,21 +6,21 @@ packages:
 
 catalogs:
   payload:
-    '@payloadcms/db-mongodb': ^3.54.0
-    '@payloadcms/live-preview-react': ^3.54.0
-    '@payloadcms/live-preview': ^3.54.0
-    '@payloadcms/next': ^3.54.0
-    '@payloadcms/payload-cloud': ^3.54.0
-    '@payloadcms/plugin-form-builder': ^3.54.0
-    '@payloadcms/plugin-nested-docs': ^3.54.0
-    '@payloadcms/plugin-redirects': ^3.54.0
-    '@payloadcms/plugin-search': ^3.54.0
-    '@payloadcms/plugin-seo': ^3.54.0
-    '@payloadcms/richtext-lexical': ^3.54.0
-    '@payloadcms/ui': ^3.54.0
-    payload: ^3.54.0
+    '@payloadcms/db-mongodb': ^3.62.0
+    '@payloadcms/live-preview': ^3.62.0
+    '@payloadcms/live-preview-react': ^3.62.0
+    '@payloadcms/next': ^3.62.0
+    '@payloadcms/payload-cloud': ^3.62.0
+    '@payloadcms/plugin-form-builder': ^3.62.0
+    '@payloadcms/plugin-nested-docs': ^3.62.0
+    '@payloadcms/plugin-redirects': ^3.62.0
+    '@payloadcms/plugin-search': ^3.62.0
+    '@payloadcms/plugin-seo': ^3.62.0
+    '@payloadcms/richtext-lexical': ^3.62.0
+    '@payloadcms/ui': ^3.62.0
+    payload: ^3.62.0
   react:
-    '@types/react': ^19.1.10
-    '@types/react-dom': ^19.1.7
-    react: ^19.1.1
-    react-dom: ^19.1.1
+    '@types/react': ^19.2.2
+    '@types/react-dom': ^19.2.2
+    react: ^19.2.0
+    react-dom: ^19.2.0

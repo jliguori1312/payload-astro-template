@@ -9,10 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@astrojs/node": "^9.4.3",
-    "@astrojs/react": "^4.3.0",
-    "@astrojs/vue": "^5.1.0",
+    "@astrojs/check": "^0.9.5",
+    "@astrojs/node": "^9.5.0",
+    "@astrojs/react": "^4.4.1",
+    "@astrojs/vue": "^5.1.2",
     "@opentelemetry/api": "^1.9.0",
     "@payloadcms/live-preview": "catalog:payload",
     "@payloadcms/richtext-lexical": "catalog:payload",
@@ -21,31 +21,31 @@
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-select": "^2.2.6",
     "@radix-ui/react-slot": "^1.2.3",
-    "@tailwindcss/vite": "^4.1.12",
+    "@tailwindcss/vite": "^4.1.16",
     "@types/react": "catalog:react",
     "@types/react-dom": "catalog:react",
     "@unpic/react": "^1.0.1",
     "app-payload": "workspace:*",
-    "astro": "^5.13.5",
+    "astro": "^5.15.3",
     "astro-payload-local-loader": "workspace:*",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "dotenv": "^17.2.1",
-    "lucide-react": "^0.542.0",
+    "dotenv": "^17.2.3",
+    "lucide-react": "^0.552.0",
     "mongodb": "^6.19.0",
     "payload": "catalog:payload",
     "payload-admin-bar": "^1.0.7",
     "react": "catalog:react",
     "react-dom": "catalog:react",
-    "sass": "^1.91.0",
-    "sharp": "^0.34.3",
+    "sass": "^1.93.3",
+    "sharp": "^0.34.4",
     "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^4.1.12",
-    "typescript": "5.9.2",
+    "tailwindcss": "^4.1.16",
+    "typescript": "5.9.3",
     "ui-library": "workspace:*",
-    "vue": "^3.5.20"
+    "vue": "^3.5.22"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.16"
+    "@tailwindcss/typography": "^0.5.19"
   }
 }
