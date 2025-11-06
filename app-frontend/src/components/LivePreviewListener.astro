@@ -5,16 +5,16 @@
 
   const onMessage = (event) => {
     // Log all incoming messages for debugging
-    console.log('Received message:', event.data);
-    console.log('Message origin:', event.origin);
+    // console.log('Received message:', event.data);
+    // console.log('Message origin:', event.origin);
 
     const isFromPayload = isDocumentEvent(event, serverURL);
 
-    console.log('Is event from Payload?', isFromPayload);
+    // console.log('Is event from Payload?', isFromPayload);
 
     // Check if the event is a document event from the Payload admin
     if (isFromPayload) {
-      console.log('Event is valid, reloading page...');
+      // console.log('Event is valid, reloading page...');
       // If it is, refresh the page to get the latest draft content
       window.location.reload();
     }
@@ -22,4 +22,8 @@
 
   // Add the event listener when the component mounts
   window.addEventListener('message', onMessage);
+
+  ready({
+    serverURL
+  })
 </script>
