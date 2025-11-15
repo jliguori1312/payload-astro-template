@@ -27,7 +27,7 @@ export function payloadLocalLoader(options: { payloadConfig: Promise<SanitizedCo
                 })
 
                 const digest = generateDigest(parsedPage)
-                idsFromPayload.add(page.id)
+                idsFromPayload.add(String(page.id))
 
                 const ifAdded = store.set({
                     id: String(page.id),
