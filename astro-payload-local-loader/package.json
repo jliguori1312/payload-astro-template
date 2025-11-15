@@ -1,6 +1,6 @@
 {
   "name": "astro-payload-local-loader",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Astro content loader for Payload CMS, using the local API",
   "type": "module",
   "scripts": {

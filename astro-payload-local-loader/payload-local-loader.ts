@@ -47,7 +47,7 @@ export function payloadLocalLoader(options: { payloadConfig: Promise<SanitizedCo
 
         },
         schema: z.object({
-            id: z.string(),
+            id: z.union([z.string(), z.number()]),
         }).passthrough()
     }
 }
